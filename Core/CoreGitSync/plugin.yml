@@ -1,0 +1,34 @@
+name: RealLandsCore
+main: org.eu.nl.onno204.Core.Main.main
+version: 1.2.10
+prefix: RealLandsCore
+depend: [ProtocolLib, PacketWrapper, Vault, MinetopiaUpgradePL]
+description: >
+             RealLandsCore by onno204.
+commands:
+  RealLandsCore: 
+    aliases: [mkc,mkcore,rls,rlc,RealLandsServerCore]
+    description: Main command for the MijnKingdm core!
+    usage: Just Type It :D
+  Prefix: 
+    description: Nope!
+    usage: Just Type It :D
+  Bank: 
+    description: Nope!
+    usage: Just Type It :D
+  Rugzak: 
+    description: Nope!
+    usage: Just Type It :D
+  pvp: 
+    description: Nope!
+    usage: Just Type It :D
+  Nope: 
+    description: Nope!
+    usage: Just Type It :D
+  Nope: 
+    description: Nope!
+    usage: Just Type It :D
+  Nope: 
+    description: Nope!
+    usage: Just Type It :D
+  
