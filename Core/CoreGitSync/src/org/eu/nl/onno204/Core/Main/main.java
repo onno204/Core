@@ -28,6 +28,7 @@ public class main extends JavaPlugin {
 	public final Logger logger = Logger.getLogger("Minecraft");
 	Timer SafeConfigs;
 	Timer UtilsTimer;
+	Timer FastUtilsTimer;
     
     static boolean setupEconomy() {
     	 RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
@@ -42,7 +43,6 @@ public class main extends JavaPlugin {
         return Holder.Chat != null;
     }
 	
-
     public void onLoad() {
         Holder.protocolManager = ProtocolLibrary.getProtocolManager();
         
@@ -205,8 +205,10 @@ public class main extends JavaPlugin {
 		
 		System.out.println("Creating Timers...");
 		UtilsTimer = new Timer();
+		FastUtilsTimer = new Timer();
 		SafeConfigs = new Timer();
 		UtilsTimer.schedule(new org.eu.nl.onno204.Core.SmallEventListener.Timer(), 1*1000, 5*60*1000);
+		FastUtilsTimer.schedule(new org.eu.nl.onno204.Core.SmallEventListener.TimerFast(), 1*1000, 1*60*1000);
 		SafeConfigs.schedule(new org.eu.nl.onno204.Core.Config.SafeConfigTimer(), (long)13*1000, 10*60*1000);
 		
 		Holder.Console.sendMessage(ChatColor.AQUA + pdfFile.getName() + ChatColor.YELLOW + " Version " + pdfFile.getVersion() + ChatColor.AQUA + " Has Been Enabled!" + " Created By onno204!");
@@ -230,6 +232,8 @@ public class main extends JavaPlugin {
 		SafeConfigs.purge();
 		UtilsTimer.cancel();
 		UtilsTimer.purge();
+		FastUtilsTimer.cancel();
+		FastUtilsTimer.purge();
 		
 		System.out.println("Removing perms...");
 		PluginManager pl = Bukkit.getPluginManager();
