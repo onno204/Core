@@ -26,13 +26,7 @@ public class NoNewPerms {
 			e.getPlayer().sendMessage("§2" + Holder.CoreOnlyConsole);
 			e.getPlayer().sendMessage("§4§l" + Methods.ReplaceMessage(Holder.CommandContained, DeniedCommand));
             Methods.NotifyPlayerWithPerms(Methods.ReplacePlayer(Methods.ReplaceMessage(Holder.PlayerTriedCommand, e.getMessage()), e.getPlayer()));;
-		}/*else if(Command.equalsIgnoreCase("manuadd")){
-			if(!(e.getPlayer().hasPermission("groupmanager.manuadd") ||e.getPlayer().hasPermission("*"))){  return; }
-			for (Player p : Bukkit.getOnlinePlayers()){
-				p.sendMessage(Holder.title + "§a" + Methods.ReplacePlayer(Methods.ReplaceMessage(Holder.ManuaddCommand, Splitted[2]), Bukkit.getPlayer(Splitted[1])));
-			}
 		}
-		*/
 	}
 	
 	public static void NoSubCommands(PlayerCommandPreprocessEvent e) {

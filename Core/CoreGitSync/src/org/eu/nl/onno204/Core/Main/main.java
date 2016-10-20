@@ -156,6 +156,9 @@ public class main extends JavaPlugin {
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("mangdelp");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("mangaddi");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("mangadd");
+		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("mangadd");
+		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("mangadd");
+		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("mangadd");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.AxactCommand.add("op");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.AxactCommand.add("deop");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.AxactCommand.add("pl");
@@ -168,6 +171,9 @@ public class main extends JavaPlugin {
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.AxactCommand.add("?");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.AxactCommand.add("plugins");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.AxactCommand.add("pv");
+		org.eu.nl.onno204.Core.Utils.NoNewPerms.AxactCommand.add("chest");
+		org.eu.nl.onno204.Core.Utils.NoNewPerms.AxactCommand.add("vault");
+		org.eu.nl.onno204.Core.Utils.NoNewPerms.AxactCommand.add("playervaults");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.AllowedCommands.add("manudelv");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.AllowedCommands.add("manuaddv");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.AllowedCommands.add("copy");

@@ -2,7 +2,7 @@ name: RealLandsCore
 main: org.eu.nl.onno204.Core.Main.main
 version: 1.2.10
 prefix: RealLandsCore
-depend: [ProtocolLib, PacketWrapper, Vault, MinetopiaUpgradePL]
+depend: [ProtocolLib, PacketWrapper, Vault, MinetopiaUpgradePL, PlayerVaults]
 description: >
              RealLandsCore by onno204.
 commands:
