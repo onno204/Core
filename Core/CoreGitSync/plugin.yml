@@ -7,7 +7,7 @@ description: >
              RealLandsCore by onno204.
 commands:
   RealLandsCore: 
-    aliases: [mkc,mkcore,rls,rlc,RealLandsServerCore]
+    aliases: [mkc,mkcore,rls,rlc,RealLandsServerCore,Core,ServerCore,SC]
     description: Main command for the MijnKingdm core!
     usage: Just Type It :D
   Prefix: 
