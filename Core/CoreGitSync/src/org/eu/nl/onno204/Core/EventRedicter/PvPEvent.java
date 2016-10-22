@@ -11,5 +11,11 @@ public class PvPEvent implements Listener {
 	public void DamageByeEvent(org.bukkit.event.entity.EntityDamageByEntityEvent e) {
 		PvPWhitelist.PvPWhitelistEvent(e);
 	}
-
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void Arrow(org.bukkit.event.entity.EntityShootBowEvent e) {
+		PvPWhitelist.PvPWhitelistEvent(e);
+	}
+	
+	
+	
 }

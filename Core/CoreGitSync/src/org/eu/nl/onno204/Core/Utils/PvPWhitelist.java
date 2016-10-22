@@ -23,4 +23,16 @@ public class PvPWhitelist {
 				dp.sendMessage(Holder.title  + Holder.PvPWhitelistDeny);
 			}
 		}
+		public static void PvPWhitelistEvent(org.bukkit.event.entity.EntityShootBowEvent e) {
+			if(e.isCancelled()){ return; }
+			
+			if(e.getEntity() == null){ return; }
+			if(!(e.getEntity() instanceof Player)){ return; }
+			Player p = (Player) e.getEntity();
+			if(!Holder.PvPEnabled){ p.sendMessage(Holder.title + Holder.PvPDisabled); e.setCancelled(true); return; }
+			if(!AllowedWeapons.contains(p.getItemInHand().getType())){
+				e.setCancelled(true);
+				p.sendMessage(Holder.title  + Holder.PvPWhitelistDeny);
+			}
+		}
 }
