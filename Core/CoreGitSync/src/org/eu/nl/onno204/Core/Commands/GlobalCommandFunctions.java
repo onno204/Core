@@ -138,7 +138,21 @@ public class GlobalCommandFunctions {
 		}
 	}
 	
-	
+	public static void FakePlayers(Player p, CommandSender sender){
+		for(int i=0; i < 10; i++){
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, sender.getName(), p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, sender.getName(), p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, sender.getName(), p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, sender.getName(), p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, "henkdepotviss", p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, "AstrumDeus", p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, "ShanoPlays", p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, "onno204", p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, "AntiHack", p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, "AntiHack", p.getLocation());
+			org.eu.nl.onno204.Core.Packets.Methods.SpawnFakePlayer(p, "AntiHack", p.getLocation());
+		}
+	}
 	
 	
 	

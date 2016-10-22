@@ -52,9 +52,11 @@ public class Methods {
         int randomy = rand.nextInt((7 - 1) + 1) + 1;
         int RandomTrueFalse = rand.nextInt((1 - 0) + 1) + 0;
         
-        Location location = location1.add(randomx, randomy, randomz);
+        Location location;
         if(RandomTrueFalse == 1){
             location = location1.add(-randomx, -randomy, -randomz);
+        }else{
+            location = location1.add(randomx, randomy, randomz);
         }
         
 		MinecraftServer nmsServer = ((CraftServer) Bukkit.getServer()).getServer();

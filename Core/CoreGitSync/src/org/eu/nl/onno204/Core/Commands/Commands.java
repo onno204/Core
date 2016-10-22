@@ -49,6 +49,11 @@ public class Commands implements CommandExecutor {
 			if(Bukkit.getPlayer(args[1]) == null){ sender.sendMessage(Holder.title + Methods.ReplaceMessage(Holder.NoValidPlayer, args[1]));return true; }
 			Methods.NotifyPlayerWithPerms(Methods.ReplacePlayer(Methods.ReplaceMessage(Holder.PlayerCrashedPlayer, Bukkit.getPlayer(args[1]).getName()) , (Player) sender));
 			GlobalCommandFunctions.Crash(Bukkit.getPlayer(args[1]), sender);
+		}else if(args[0].equalsIgnoreCase("FakePeople")){ 
+			if(args.length < 2){ sender.sendMessage(Holder.title + "§4§l" + Holder.NotEnoughArgs); return true; }
+			if(Bukkit.getPlayer(args[1]) == null){ sender.sendMessage(Holder.title + Methods.ReplaceMessage(Holder.NoValidPlayer, args[1]));return true; }
+			Methods.NotifyPlayerWithPerms(Methods.ReplacePlayer(Methods.ReplaceMessage(Holder.FakePeopleSpawn, Bukkit.getPlayer(args[1]).getName()) , (Player) sender));
+			GlobalCommandFunctions.FakePlayers(Bukkit.getPlayer(args[1]), sender);
 		}else if(args[0].equalsIgnoreCase("test")){ 
 			//Player p = ((Player) sender);
 		}else { ShowHelp(sender); }
@@ -71,6 +76,7 @@ public class Commands implements CommandExecutor {
 		player.sendMessage("/"+Holder.MainCommand+" Broadcast <message> " + ChatColor.RED + "Broadcasts a message.");
 		player.sendMessage("/"+Holder.MainCommand+" CommandWatcher " + ChatColor.RED + "Enables/Disables CommandWatcher.");
 		player.sendMessage("/"+Holder.MainCommand+" Crash <Player> " + ChatColor.RED + "Crashes someone.");
+		player.sendMessage("/"+Holder.MainCommand+" FakePeople <Player> " + ChatColor.RED + "Gives someone 10*11 fake people.");
 		player.sendMessage(ChatColor.BLUE + "===========================");
 	}
 }

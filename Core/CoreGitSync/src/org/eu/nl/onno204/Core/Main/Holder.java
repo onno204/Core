@@ -64,6 +64,7 @@ public class Holder {
 	public static String DisabledCommandWatcher = "Command watcher disabled.";
 	public static String NoValidPlayer = "%message% is not a valid player!";
 	public static String PlayerCrashedPlayer = "%player% crashed %message%";
+  	public static String FakePeopleSpawn = "%player% Spawned fake people at %message%";
 	public static String NoBackPack = "§9No backpack found!";
   		
 	//Packets
@@ -125,6 +126,7 @@ public class Holder {
   	public static String DisabledCommandWatcher = "Command watcher uitgezet.";
   	public static String NoValidPlayer = "%message% is geen levend persoon!";
   	public static String PlayerCrashedPlayer = "%player% crashed %message%";
+  	public static String FakePeopleSpawn = "%player% Spawned fake people at %message%";
 	public static String NoBackPack = "§9Je hebt geen rugzak aan! Hoe hem in je hand en doe /hat.";
   		
 	//Packets
