@@ -22,6 +22,7 @@ public class Setup {
 	public static void AddFilesToList(){
 		Files.put( "CommandWatcher", new File(Holder.pl.getDataFolder(), "CommandWatcher.yml") );
 		Files.put( "Bank", new File(Holder.pl.getDataFolder(), "Bank.yml") );
+		Files.put( "IpRegister", new File(Holder.pl.getDataFolder(), "IpRegister.yml") );
 	}
 	
 	public static void CreateFiles(){
@@ -40,6 +41,9 @@ public class Setup {
 			}else if(s.equalsIgnoreCase("Bank")){
 				Config.Bank = YamlConfiguration.loadConfiguration( Files.get(s) );
 				Holder.Console.sendMessage(Holder.title + "Loaded Bank.");
+			}else if(s.equalsIgnoreCase("IpRegister")){
+				Config.IpRegister = YamlConfiguration.loadConfiguration( Files.get(s) );
+				Holder.Console.sendMessage(Holder.title + "Loaded IpRegister.");
 			}
 		}
 	}
@@ -56,6 +60,10 @@ public class Setup {
 				try { Config.Bank.save( Files.get(s) );
 				} catch (IOException e) { Methods.NotifyPlayerWithPerms(Holder.title + "Something went wrong while saving Bank config"); }
 				Holder.Console.sendMessage(Holder.title + "Saved Bank.");
+			}else if(s.equalsIgnoreCase("IpRegister")){
+				try { Config.IpRegister.save( Files.get(s) );
+				} catch (IOException e) { Methods.NotifyPlayerWithPerms(Holder.title + "Something went wrong while saving IpRegister config"); }
+				Holder.Console.sendMessage(Holder.title + "Saved IpRegister.");
 				Holder.Console.sendMessage(Holder.title + "Saved configs.");
 			}
 		}

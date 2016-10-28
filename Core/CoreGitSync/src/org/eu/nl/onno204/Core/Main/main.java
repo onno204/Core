@@ -144,6 +144,7 @@ public class main extends JavaPlugin {
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.LoginAndOut(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.PvPEvent(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.SignListener(), this);
+		pl.registerEvents(new org.eu.nl.onno204.Core.SmallEventListener.CustomTabs.CustomHover(), this);
 		
 		
 		System.out.println("Loading Blocked Commands");
@@ -209,7 +210,7 @@ public class main extends JavaPlugin {
 		SafeConfigs = new Timer();
 		UtilsTimer.schedule(new org.eu.nl.onno204.Core.SmallEventListener.Timer(), 1*1000, 5*60*1000);
 		FastUtilsTimer.schedule(new org.eu.nl.onno204.Core.SmallEventListener.TimerFast(), 1*1000, 1*60*1000);
-		SafeConfigs.schedule(new org.eu.nl.onno204.Core.Config.SafeConfigTimer(), (long)13*1000, 10*60*1000);
+		SafeConfigs.schedule(new org.eu.nl.onno204.Core.Config.SafeConfigTimer(), (long)13*1000, 15*60*1000);
 		
 		Holder.Console.sendMessage(ChatColor.AQUA + pdfFile.getName() + ChatColor.YELLOW + " Version " + pdfFile.getVersion() + ChatColor.AQUA + " Has Been Enabled!" + " Created By onno204!");
 		this.logger.info(pdfFile.getName() + " Version " + pdfFile.getVersion() + " Has Been Enabled!" + ", Created By onno204!");

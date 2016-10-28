@@ -6,6 +6,7 @@ public class Config {
 	
 	public static FileConfiguration Bank;
 	public static FileConfiguration CommandWatcher;
+	public static FileConfiguration IpRegister;
 	
 	
 }

@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.eu.nl.onno204.Core.SmallEventListener.AntiJordy;
 import org.eu.nl.onno204.Core.SmallEventListener.JoinAndLeaveMessage;
 import org.eu.nl.onno204.Core.SmallEventListener.ScoreboardFunctions;
+import org.eu.nl.onno204.Core.SmallEventListener.CustomTabs.CustomHover;
 import org.eu.nl.onno204.Core.SmallEventListener.Gamemode.GamemodeJoinEvent;
 import org.eu.nl.onno204.Core.SmallEventListener.Loggers.LoginAndOutLogger;
 
@@ -27,5 +28,6 @@ public class LoginAndOut implements Listener{
 		AntiJordy.AntiJordyJoinEvent(e);
 		JoinAndLeaveMessage.CustomJoinMessage(e);
 		LoginAndOutLogger.Join(e);
+		CustomHover.RegisterPlayerAtIP(e);
 	}
 }
