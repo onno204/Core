@@ -6,6 +6,10 @@ import org.bukkit.inventory.Inventory;
 public class Inventorys {
 	public static Inventory Bank = Bukkit.createInventory(null, 54, "§bWelkom in de bank");
 	public static Inventory Random = Bukkit.createInventory(null, 9, "§bRandom Items");
+	public static Inventory BanSelectType = Bukkit.createInventory(null, 9, "§bSelect ban type");
+	public static Inventory BanSelectPlayer = Bukkit.createInventory(null, 9, "§bSelect Player");
+	public static Inventory BanSelectReason = Bukkit.createInventory(null, 9, "§bSelect Reason");
+	public static Inventory BanSelectTime = Bukkit.createInventory(null, 9, "§bSelect Time");
 	
 	public static void Setup(){
 		//1ste rij

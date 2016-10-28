@@ -2,6 +2,7 @@ package org.eu.nl.onno204.Core.Inventorys;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -11,6 +12,7 @@ public class SetupItemstacks {
 	public static ItemStack air = new ItemStack(0);
 	public static ItemStack RedStainedGlass;
 	public static ItemStack GreenStainedGlass;
+	
 	//Take
 	public static ItemStack TakeBlockGold;
 	public static ItemStack TakeBlockRedstone;
@@ -18,6 +20,7 @@ public class SetupItemstacks {
 	public static ItemStack TakeBlockDia;
 	public static ItemStack TakeGoldIngot;
 	public static ItemStack TakeGoldNugget;
+	
 	//Fast Take
 	public static ItemStack TakeFastBlockGold;
 	public static ItemStack TakeFastBlockRedstone;
@@ -25,7 +28,7 @@ public class SetupItemstacks {
 	public static ItemStack TakeFastBlockDia;
 	public static ItemStack TakeFastGoldIngot;
 	public static ItemStack TakeFastGoldNugget;
-	//
+	
 	//Deposit
 	public static ItemStack DepositBlockGold;
 	public static ItemStack DepositBlockRedstone;
@@ -40,14 +43,66 @@ public class SetupItemstacks {
 	public static ItemStack DepositFastBlockDia;
 	public static ItemStack DepositFastGoldIngot;
 	public static ItemStack DepositFastGoldNugget;
+	
 	//Utils
 	public static ItemStack Book;
+
+	//BanMenu
+	public static ItemStack SelectTime;
+	public static ItemStack SelectTypeBan;
+	public static ItemStack SelectTypeKick;
+	public static ItemStack SelectTypeKickall;
+	public static ItemStack SelectPlayer;
+	
 	
 	
 	
 	public static void Setup(){
 		ItemMeta meta;
 		ItemStack itemstack;
+		
+		//BanMenu
+		itemstack = new ItemStack(Material.SKULL, 0);
+		meta = itemstack.getItemMeta();
+		meta.setDisplayName("§4§lKickAll.");
+		itemstack.setItemMeta(meta);
+		SelectPlayer = itemstack;
+		
+		itemstack = new ItemStack(Material.SKULL, 0);
+		meta = itemstack.getItemMeta();
+		meta.setDisplayName("§4§lKickAll.");
+		itemstack.setItemMeta(meta);
+		SelectTypeBan = itemstack;
+		
+		itemstack = new ItemStack(Material.SKULL, 1);
+		meta = itemstack.getItemMeta();
+		meta.setDisplayName("§4§lKickAll.");
+		itemstack.setItemMeta(meta);
+		SelectTypeKickall = itemstack;
+		
+		itemstack = new ItemStack(Material.SKULL, 2);
+		meta = itemstack.getItemMeta();
+		meta.setDisplayName("§4§lKickAll.");
+		itemstack.setItemMeta(meta);
+		SelectTypeKick = itemstack;
+		
+		itemstack = new ItemStack(Material.WATCH, 1);
+		meta = itemstack.getItemMeta();
+		meta.setDisplayName("§4§lKickAll.");
+		itemstack.setItemMeta(meta);
+		itemstack.addUnsafeEnchantment(Enchantment.LUCK, 1);
+		//itemstack.addUnsafeEnchantment(Enchantment.LUCK, -10);
+		SelectTime = itemstack;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		itemstack = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
 		meta = itemstack.getItemMeta();
@@ -142,7 +197,7 @@ public class SetupItemstacks {
 		itemstack.setItemMeta(meta);
 		DepositFastGoldNugget = itemstack;
 		
-
+		
 		
 		//Take
 		//Take

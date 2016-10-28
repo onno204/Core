@@ -39,6 +39,7 @@ public class Methods {
 	
 	public static void RunConsoleCommand(String cmd){Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), cmd);}
 	public static String ReplacePlayer(String Default, Player p){ return Default.replace("%player%", p.getName()); }
+	public static String ReplacePlayer(String Default, String p){ return Default.replace("%player%", p); }
 	public static String ReplaceMessage(String Default, String Message){ return Default.replace("%message%", Message); }
 	public static String ReplaceBanType(String Default, String Message){ return Default.replace("%bantype%", Message); }
 	

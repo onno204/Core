@@ -8,7 +8,8 @@ public class NoOnno204Spam {
 	@SuppressWarnings("deprecation")
 	public static void onno204Spam(org.bukkit.event.player.PlayerChatEvent e) {
 		if(e.isCancelled()){ return; }
-		if(e.getMessage().toLowerCase().contains("onno") || e.getMessage().toLowerCase().contains("ono")|| e.getMessage().toLowerCase().contains("onni")|| e.getMessage().toLowerCase().contains("oni")){
+		String Message = e.getMessage().replace(" ", "").toLowerCase();
+		if(Message.contains("onno") || Message.contains("ono")|| Message.contains("onni")|| Message.contains("oni")){
 			Player p = e.getPlayer();
 			String Lvl = ChatColor.BLUE + "[" + ChatColor.GREEN + "Level:"+ ChatColor.YELLOW + 10 + ChatColor.BLUE + "]";
 			for(int i=0; i<25; i++){

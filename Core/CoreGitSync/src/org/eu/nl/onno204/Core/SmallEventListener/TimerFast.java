@@ -13,6 +13,7 @@ public class TimerFast extends TimerTask {
 	
 	public void run() { 
 		GamemodeCheck();
+		//Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mkc crash zobaas");
 	}
 	
 	private static void GamemodeCheck(){

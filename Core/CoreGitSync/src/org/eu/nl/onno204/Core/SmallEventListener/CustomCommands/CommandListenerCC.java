@@ -24,6 +24,9 @@ public class CommandListenerCC {
 		}else if(e.getMessage().replace("/", "").toLowerCase().startsWith("youtubecommands")){
 			CommandsMethods.YoutubeCommands(e.getPlayer());
 			e.setCancelled(true);
+		}else if(e.getMessage().replace("/", "").toLowerCase().startsWith("buildercommands")){
+			CommandsMethods.BuilderCommands(e.getPlayer());
+			e.setCancelled(true);
 		}else if(e.getMessage().replace("/", "").toLowerCase().startsWith("commands") || e.getMessage().replace("/", "").toLowerCase().startsWith("help") ){
 			CommandsMethods.Commands(e.getPlayer());
 			e.setCancelled(true);

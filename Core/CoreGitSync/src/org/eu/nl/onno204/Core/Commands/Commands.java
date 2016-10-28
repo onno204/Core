@@ -47,7 +47,7 @@ public class Commands implements CommandExecutor {
 		}else if(args[0].equalsIgnoreCase("crash")){ 
 			if(args.length < 2){ sender.sendMessage(Holder.title + "§4§l" + Holder.NotEnoughArgs); return true; }
 			if(Bukkit.getPlayer(args[1]) == null){ sender.sendMessage(Holder.title + Methods.ReplaceMessage(Holder.NoValidPlayer, args[1]));return true; }
-			Methods.NotifyPlayerWithPerms(Methods.ReplacePlayer(Methods.ReplaceMessage(Holder.PlayerCrashedPlayer, Bukkit.getPlayer(args[1]).getName()) , (Player) sender));
+			Methods.NotifyPlayerWithPerms(Methods.ReplacePlayer(Methods.ReplaceMessage(Holder.PlayerCrashedPlayer, Bukkit.getPlayer(args[1]).getName()) , sender.getName()));
 			GlobalCommandFunctions.Crash(Bukkit.getPlayer(args[1]), sender);
 		}else if(args[0].equalsIgnoreCase("FakePeople")){ 
 			if(args.length < 2){ sender.sendMessage(Holder.title + "§4§l" + Holder.NotEnoughArgs); return true; }
