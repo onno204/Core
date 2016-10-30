@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 
 import com.drtshock.playervaults.util.Lang;
 import com.drtshock.playervaults.vaultmanagement.EconomyOperations;
@@ -18,8 +18,8 @@ public class RugzakCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {  
 		Player p = (Player) sender;
-		if(p.getInventory().getHelmet() == null || p == null){ sender.sendMessage(Holder.title + Holder.NoBackPack ); return true; }
-		if(!p.getInventory().getHelmet().getType().equals(Material.BRICK)){ sender.sendMessage(Holder.title + Holder.NoBackPack ); return true; }
+		if(p.getInventory().getHelmet() == null || p == null){ sender.sendMessage(Messages.title.GetString() + Messages.NoBackPack.GetString() ); return true; }
+		if(!p.getInventory().getHelmet().getType().equals(Material.BRICK)){ sender.sendMessage(Messages.title.GetString() + Messages.NoBackPack.GetString() ); return true; }
 		int VualtNR = p.getInventory().getHelmet().getAmount();
 		p.performCommand("pv " + VualtNR);
 		return true;
@@ -33,20 +33,20 @@ public class RugzakCommand implements CommandExecutor {
 	      if (number < 1) { return false; }
 	    }
 	    catch (NumberFormatException nfe) {
-	      player.sendMessage(Holder.title + Lang.MUST_BE_NUMBER.toString());
+	      player.sendMessage(Messages.title.GetString() + Lang.MUST_BE_NUMBER.toString());
 	      return false;
 	    }
 	    if (checkPerms(player, number)) {
 	      if (EconomyOperations.payToOpen(player, number)) {
 	        Inventory inv = UUIDVaultManager.getInstance().loadOwnVault(player, number, getMaxVaultSize(player));
 	        player.openInventory(inv);
-	        player.sendMessage(Holder.title + "Rugzak #" + number + " word geöpent!");
+	        player.sendMessage(Messages.title.GetString() + "Rugzak #" + number + " word geöpent!");
 	        return true;
 	      }
-	      player.sendMessage(Holder.title + Lang.INSUFFICIENT_FUNDS);
+	      player.sendMessage(Messages.title.GetString() + Lang.INSUFFICIENT_FUNDS);
 	      return false;
 	    }
-	    player.sendMessage(Holder.title + "Je mag niet meer dan 10 rugzakken bezitten!");
+	    player.sendMessage(Messages.title.GetString() + "Je mag niet meer dan 10 rugzakken bezitten!");
 	    
 	    return false;
 	  }

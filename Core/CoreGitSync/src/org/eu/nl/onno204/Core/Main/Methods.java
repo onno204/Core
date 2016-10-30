@@ -10,13 +10,13 @@ public class Methods {
 
 	public static void NotifyPlayerWithPerms(String message){
 		for(Player p : Bukkit.getOnlinePlayers()){
-        	if(p.hasPermission(Permissions.Notify)){ p.sendMessage(Holder.title +  message);}
+        	if(p.hasPermission(Permissions.Notify)){ p.sendMessage(Messages.title.GetString() +  message);}
         }
 	}
 	
 	public static void Broadcast(String message){
 		for(Player p : Bukkit.getOnlinePlayers()){
-        	p.sendMessage(Holder.title + message);
+        	p.sendMessage(Messages.title.GetString() + message);
         }
 	}
 	

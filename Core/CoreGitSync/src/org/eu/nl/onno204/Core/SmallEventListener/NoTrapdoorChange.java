@@ -1,7 +1,7 @@
 package org.eu.nl.onno204.Core.SmallEventListener;
 
 import org.bukkit.Material;
-import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 import org.eu.nl.onno204.Core.Main.Permissions;
 
 public class NoTrapdoorChange {
@@ -12,9 +12,9 @@ public class NoTrapdoorChange {
 				if(e.getClickedBlock().getLocation().add(0, 1, 0).getBlock().getType().equals(Material.SMOOTH_STAIRS)){
 					if(!e.getPlayer().hasPermission(Permissions.AllowTrapdoor)){
 						e.setCancelled(true);
-						e.getPlayer().sendMessage(Holder.title + Holder.DontClickTheTrapdoor);
+						e.getPlayer().sendMessage(Messages.title.GetString() + Messages.DontClickTheTrapdoor.GetString());
 					}else{
-						e.getPlayer().sendMessage(Holder.title + Holder.AllowDontClickTheTrapdoor);
+						e.getPlayer().sendMessage(Messages.title.GetString() + Messages.AllowDontClickTheTrapdoor.GetString());
 					}
 				}
 			}

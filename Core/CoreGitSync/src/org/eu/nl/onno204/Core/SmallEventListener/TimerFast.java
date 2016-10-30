@@ -5,7 +5,7 @@ import java.util.TimerTask;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 import org.eu.nl.onno204.Core.Main.Methods;
 import org.eu.nl.onno204.Core.Main.Permissions;
 
@@ -21,8 +21,8 @@ public class TimerFast extends TimerTask {
 			if(p.getGameMode() == GameMode.CREATIVE){
 				if(!p.hasPermission(Permissions.GamemodeBypass)){
 					Methods.RunConsoleCommand("gamemode survival " + p.getName());
-					Methods.NotifyPlayerWithPerms(Holder.title + "§c§l" + Methods.ReplacePlayer(Holder.HasGamemodeMessage, p));
-					Methods.NotifyPlayerWithPerms(Holder.title + "§c§l" + Methods.ReplacePlayer(Holder.HasGamemodeMessage, p));
+					Methods.NotifyPlayerWithPerms(Messages.title.GetString() + "§c§l" + Methods.ReplacePlayer(Messages.HasGamemodeMessage.GetString(), p));
+					Methods.NotifyPlayerWithPerms(Messages.title.GetString() + "§c§l" + Methods.ReplacePlayer(Messages.HasGamemodeMessage.GetString(), p));
 				}
 			}
 		}

@@ -2,7 +2,7 @@ package org.eu.nl.onno204.Core.Utils;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 
 public class CommandHelperListener { 
 	 
@@ -11,7 +11,7 @@ public class CommandHelperListener {
 			String cmd = e.getMessage().toLowerCase();
 			
 			if(cmd.startsWith("/aaatell") || cmd.startsWith("/aaamsg")){
-				p.sendMessage(Holder.title + "/Tell hebben we helaas uitgezet. Maar we hebben wel een mail systeem! Gebruik '/mail'");
+				p.sendMessage(Messages.title.GetString() + "/Tell hebben we helaas uitgezet. Maar we hebben wel een mail systeem! Gebruik '/mail'");
 				return;
 			}
 			

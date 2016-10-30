@@ -1,7 +1,7 @@
 package org.eu.nl.onno204.Core.SmallEventListener;
 
 import org.bukkit.entity.Player;
-import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 import org.eu.nl.onno204.Core.Main.Permissions;
 
 public class AntiBuild {
@@ -13,7 +13,7 @@ public class AntiBuild {
 		if(player.hasPermission(Permissions.Build)){
 			return false;
 		}
-		player.sendMessage(Holder.title + Holder.AntiBuild);
+		player.sendMessage(Messages.title.GetString() + Messages.AntiBuild.GetString());
 		return true;
 	}
 }

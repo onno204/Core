@@ -1,17 +1,21 @@
 package org.eu.nl.onno204.Core.Main;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.YamlConfiguration;
 //import org.bukkit.Material;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.eu.nl.onno204.Core.Config.Config;
 import org.eu.nl.onno204.Core.SmallEventListener.ScoreboardFunctions;
 //import org.eu.nl.onno204.Core.Utils.PvPWhitelist;
 import org.eu.nl.onno204.Core.Utils.PvPWhitelist;
@@ -33,44 +37,30 @@ public class main extends JavaPlugin {
     static boolean setupEconomy() {
     	 RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
          if (rsp == null) { return false; }
-         Holder.economy = rsp.getProvider();
-         return Holder.economy != null;
+         economy = rsp.getProvider();
+         return economy != null;
     }
     
     static boolean setupChat() {
         RegisteredServiceProvider<Chat> rsp = Bukkit.getServer().getServicesManager().getRegistration(Chat.class);
-        Holder.Chat = rsp.getProvider();
-        return Holder.Chat != null;
+        Chat = rsp.getProvider();
+        return Chat != null;
     }
 	
     public void onLoad() {
         Holder.protocolManager = ProtocolLibrary.getProtocolManager();
-        
         //PlayerToZombie.Start();
         //NameHide.Start();
     }
     
-    
+
+    public static net.milkbowl.vault.chat.Chat Chat = null;
+    public static Economy economy = null;
 	
 	@SuppressWarnings("deprecation")
 	public void onEnable(){
-        if (getServer().getPluginManager().getPlugin("Vault") == null) {
-        	Methods.NotifyPlayerWithPerms("No vault Plugin was found!");
-        	Bukkit.getPluginManager().disablePlugin(this);
-        }
-        
-        if(!setupChat()){
-        	Methods.NotifyPlayerWithPerms("No vault Chat dependency found!");
-        	Disabled = true;
-        	Bukkit.getPluginManager().disablePlugin(this);
-        }
-        if(!setupEconomy()){
-        	Methods.NotifyPlayerWithPerms("No vault Economy dependency found!");
-        	Disabled = true;
-        	Bukkit.getPluginManager().disablePlugin(this);
-        }
 		
-		if(Disabled){ return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		
 		
 		this.logger.info(pdfFile.getName() + " Version " + pdfFile.getVersion() + " Is getting enabled!" + ", Created By onno204!");
@@ -88,22 +78,52 @@ public class main extends JavaPlugin {
 		this.logger.info("*****!!!********!!!********!!!*******!!!*****!!!*******************************************************");
 		this.logger.info("=======================================================================================================");
 		this.logger.info("=======================================================================================================");
-		Holder.Console.sendMessage(ChatColor.AQUA + pdfFile.getName() + ChatColor.YELLOW + " Version " + pdfFile.getVersion() + ChatColor.AQUA + " Is getting enabled...");
-
+		Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.AQUA + pdfFile.getName() + ChatColor.YELLOW + " Version " + pdfFile.getVersion() + ChatColor.AQUA + " Is getting enabled...");
+		
+		if(Disabled){ Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("Currently restarting or reloading!");
 		Methods.Broadcast("Bijna klaar met reloaden!");
 		
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("Loading Config Files...");
 		if(!this.getDataFolder().exists()){ this.getDataFolder().mkdir(); System.out.println("Datafolder Created."); 
-		}else{
-			System.out.println("Datafolder Already exited."); 
-		}
+		}else{ System.out.println("Datafolder Already existed."); }
+		
+		//Load Default config
+		File file = new File(this.getDataFolder().getPath(), "config.yml");
+		try { if (file.createNewFile()) { System.out.println("File '" + file.getName() + "' is created!");} 
+		} catch (IOException ee) { System.out.println("Something went wrong while creating player files");  }
+		Config.DefaultConfig = YamlConfiguration.loadConfiguration( file );
+
+		System.out.println(Config.DefaultConfig.getString("NotEnoughArgs"));
+		System.out.println(Messages.NotEnoughArgs.GetString());
+		
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+        	Methods.NotifyPlayerWithPerms("No vault Plugin was found!");
+        	Bukkit.getPluginManager().disablePlugin(this);
+        }
+        
+        if(!setupChat()){
+        	Methods.NotifyPlayerWithPerms("No vault Chat dependency found!");
+        	Disabled = true;
+        	Bukkit.getPluginManager().disablePlugin(this);
+        }
+        if(!setupEconomy()){
+        	Methods.NotifyPlayerWithPerms("No vault Economy dependency found!");
+        	Disabled = true;
+        	Bukkit.getPluginManager().disablePlugin(this);
+        }
+		
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		
+		
 		org.eu.nl.onno204.Core.Config.TxTWriter.Load();
 		org.eu.nl.onno204.Core.Config.Setup.Load();
 		Holder.CommandWacherPlayers.clear();
 		Methods.LoadCommandWacther();
 		
-
+		
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("Setting up Inventories...");
 		org.eu.nl.onno204.Core.Inventorys.SetupItemstacks.Setup();
 		org.eu.nl.onno204.Core.Inventorys.Inventorys.Setup();
@@ -112,7 +132,8 @@ public class main extends JavaPlugin {
 		System.out.println("Setting up perms...");
 		PluginManager pl = Bukkit.getPluginManager();
 		for(Permission perm : Permissions.AllPerms()){ pl.addPermission(perm); }
-		
+
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("Controlling Commands..."); 
 		getCommand("RealLandsCore").setExecutor(new org.eu.nl.onno204.Core.Commands.Commands() );
 		getCommand("RealLandsCore").setPermission(Permissions.Menu.toString());
@@ -132,7 +153,8 @@ public class main extends JavaPlugin {
 		
 		getCommand("Rugzak").setExecutor(new org.eu.nl.onno204.Core.Commands.RugzakCommand() );
 		
-		
+
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("Registering events..."); 
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.AntiWurstInventoryListener(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.BlockListener(), this);
@@ -146,7 +168,8 @@ public class main extends JavaPlugin {
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.PvPEvent(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.SignListener(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.ServerListPingRedicter(), this);
-		
+
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("Loading Blocked Commands");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("manuaddp");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("manudel");
@@ -188,22 +211,23 @@ public class main extends JavaPlugin {
 		PvPWhitelist.AllowedWeapons.add(Material.STONE_SWORD);
 		PvPWhitelist.AllowedWeapons.add(Material.BOW);
 		PvPWhitelist.AllowedWeapons.add(Material.STICK);
-		
+
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("Loading Broadcast messages...");
-		org.eu.nl.onno204.Core.Main.Holder.BroadcastMessages.add("&2Voor alle informatie die je nodig hebt type: '/Support'");
-		org.eu.nl.onno204.Core.Main.Holder.BroadcastMessages.add("&6Vragen over een plugin? onno204 staat altijd voor je klaar.");
-		org.eu.nl.onno204.Core.Main.Holder.BroadcastMessages.add("&9Alle vragen die je hebt worden beantword op de skype: '&lLive:RealLandsServer&9'.");
-		
+		//org.eu.nl.onno204.Core.Main.Holder.BroadcastMessages.add("&2Voor alle informatie die je nodig hebt type: '/Support'");
+		//org.eu.nl.onno204.Core.Main.Holder.BroadcastMessages.add("&6Vragen over een plugin? onno204 staat altijd voor je klaar.");
+		//org.eu.nl.onno204.Core.Main.Holder.BroadcastMessages.add("&9Alle vragen die je hebt worden beantword op de skype: '&lLive:RealLandsServer&9'.");
 
-		
-
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("Creating ScoreBoards...");
 		ScoreboardFunctions.SetupBivak();
 		ScoreboardFunctions.Setup(null, false);
-		
+
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("SettingUp Bank...");
 		Holder.economy.createBank("Bank", Bukkit.getOfflinePlayer("AstrumDeus"));
-		
+
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		System.out.println("Creating Timers...");
 		UtilsTimer = new Timer();
 		FastUtilsTimer = new Timer();
@@ -212,6 +236,74 @@ public class main extends JavaPlugin {
 		FastUtilsTimer.schedule(new org.eu.nl.onno204.Core.SmallEventListener.TimerFast(), 1*1000, 1*60*1000);
 		SafeConfigs.schedule(new org.eu.nl.onno204.Core.Config.SafeConfigTimer(), (long)13*1000, 15*60*1000);
 		
+		
+		
+		
+		/*
+		File file = new File(this.getDataFolder().getPath(), "config.yml");
+
+		//Checking if the file Exists and creates if not
+		try { if (file.createNewFile()) { System.out.println("File '" + file.getName() + "' is created!");} 
+		} catch (IOException ee) { System.out.println("Something went wrong while creating player files");  }
+		FileConfiguration IpRegister;
+		IpRegister = YamlConfiguration.loadConfiguration( file );
+		
+		IpRegister.set("AddBivak", '"' + Holder.AddBivak + '"');
+		IpRegister.set("AllowDontClickTheTrapdoor", '"' + Holder.AllowDontClickTheTrapdoor + '"');
+		IpRegister.set("AntiBuild", '"' + Holder.AntiBuild + '"');
+		IpRegister.set("BanAndKickFirstLine", '"' + Holder.BanAndKickFirstLine + '"');
+		IpRegister.set("BanAndKickFormattingMessage", '"' + Holder.BanAndKickFormattingMessage + '"');
+		IpRegister.set("BanEndMessage", '"' + Holder.BanEndMessage + '"');
+		IpRegister.set("BroadcastFormattingMessage", '"' + Holder.BroadcastFormattingMessage + '"');
+		IpRegister.set("BroadcastMessages", Holder.BroadcastMessages );
+		IpRegister.set("CommandContained", '"' + Holder.CommandContained + '"');
+		IpRegister.set("CommandWacherPrefix", '"' + Holder.CommandWacherPrefix + '"');
+		IpRegister.set("CoreNoSubCommand", '"' + Holder.CoreNoSubCommand + '"');
+		IpRegister.set("CoreOnlyConsole", '"' + Holder.CoreOnlyConsole + '"');
+		IpRegister.set("CoreProtectedCommand", '"' + Holder.CoreProtectedCommand + '"');
+		IpRegister.set("CustomJoinMessage", '"' + Holder.CustomJoinMessage + '"');
+		IpRegister.set("CustomLeaveMessage", '"' + Holder.CustomLeaveMessage + '"');
+		IpRegister.set("DisabledCommandWatcher", '"' + Holder.DisabledCommandWatcher + '"');
+		IpRegister.set("DontClickTheTrapdoor", '"' + Holder.DontClickTheTrapdoor + '"');
+		IpRegister.set("EnabledCommandWatcher", '"' + Holder.EnabledCommandWatcher + '"');
+		IpRegister.set("FakePeopleSpawn", '"' + Holder.FakePeopleSpawn + '"');
+		IpRegister.set("FancyName", '"' + Holder.FancyName + '"');
+		IpRegister.set("FireworkMessage", '"' + Holder.FireworkMessage + '"');
+		IpRegister.set("FromTheBank", '"' + Holder.FromTheBank + '"');
+		IpRegister.set("GamemodeCheaterMessage", '"' + Holder.GamemodeCheaterMessage + '"');
+		IpRegister.set("HasGamemodeMessage", '"' + Holder.HasGamemodeMessage + '"');
+		IpRegister.set("GamemodeDenyMessage", '"' + Holder.GamemodeDenyMessage + '"');
+		IpRegister.set("KillGamemodeMessage", '"' + Holder.KillGamemodeMessage + '"');
+		IpRegister.set("MainCommand", '"' + Holder.MainCommand + '"');
+		IpRegister.set("ManuaddCommand", '"' + Holder.ManuaddCommand + '"');
+		IpRegister.set("MOTD", '"' + Holder.MOTD + '"');
+		IpRegister.set("NoBackPack", '"' + Holder.NoBackPack + '"');
+		IpRegister.set("NoCrafting", '"' + Holder.NoCrafting + '"');
+		IpRegister.set("NoCrashItemMessage", '"' + Holder.NoCrashItemMessage + '"');
+		IpRegister.set("NoSubCommandPublic", '"' + Holder.NoSubCommandPublic + '"');
+		IpRegister.set("NotEnoughArgs", '"' + Holder.NotEnoughArgs + '"');
+		IpRegister.set("NoUnamedBook", '"' + Holder.NoUnamedBook + '"');
+		IpRegister.set("NoValidPlayer", '"' + Holder.NoValidPlayer + '"');
+		IpRegister.set("PlayerCrashedPlayer", '"' + Holder.PlayerCrashedPlayer + '"');
+		IpRegister.set("PlayerTriedCommand", '"' + Holder.PlayerTriedCommand + '"');
+		IpRegister.set("PvPDisabled", '"' + Holder.PvPDisabled + '"');
+		IpRegister.set("PvPEnabled", Holder.PvPEnabled );
+		IpRegister.set("PvPWhitelistDeny", '"' + Holder.PvPWhitelistDeny + '"');
+		IpRegister.set("RawName", '"' + Holder.RawName + '"');
+		IpRegister.set("RemoveBivak", '"' + Holder.RemoveBivak + '"');
+		IpRegister.set("Skype", '"' + Holder.Skype + '"');
+		IpRegister.set("TempBanFirstLine", '"' + Holder.TempBanFirstLine + '"');
+		IpRegister.set("title", '"' + Holder.title + '"');
+		IpRegister.set("ToTheBank", '"' + Holder.ToTheBank + '"');
+		IpRegister.set("WarnKickMessage", '"' + Holder.WarnKickMessage + '"');
+		
+		
+		
+		try { IpRegister.save(file);
+		} catch (IOException ee) { System.out.println("Something went wrong while saving player files");  }
+		
+		*/
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
 		Holder.Console.sendMessage(ChatColor.AQUA + pdfFile.getName() + ChatColor.YELLOW + " Version " + pdfFile.getVersion() + ChatColor.AQUA + " Has Been Enabled!" + " Created By onno204!");
 		this.logger.info(pdfFile.getName() + " Version " + pdfFile.getVersion() + " Has Been Enabled!" + ", Created By onno204!");
 	}

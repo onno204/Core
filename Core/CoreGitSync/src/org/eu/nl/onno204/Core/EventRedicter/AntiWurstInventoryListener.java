@@ -9,6 +9,7 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 
 public class AntiWurstInventoryListener implements Listener { 
 	 
@@ -22,9 +23,9 @@ public class AntiWurstInventoryListener implements Listener {
 					e.setCancelled(true);
 					InventoryView InventoryView = e.getView();
 					Player player = (Player) InventoryView.getPlayer();
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
 				}
 			}catch(java.lang.NullPointerException exc){ Holder.Console.sendMessage( exc.getMessage() ); }
 		}
@@ -46,9 +47,9 @@ public class AntiWurstInventoryListener implements Listener {
 											e.setCancelled(true);
 											InventoryView InventoryView = e.getView();
 											Player player = (Player) InventoryView.getPlayer();
-											player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-											player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-											player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
+											player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+											player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+											player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
 										}
 									}
 								}
@@ -68,9 +69,9 @@ public class AntiWurstInventoryListener implements Listener {
 				if(e.getItemDrop().getItemStack().getItemMeta().getDisplayName().toLowerCase().contains("crash")){
 					e.setCancelled(true);
 					Player player = e.getPlayer();
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
 				}
 			}catch(java.lang.NullPointerException exc){ Holder.Console.sendMessage( exc.getMessage() ); }
 		}
@@ -84,9 +85,9 @@ public class AntiWurstInventoryListener implements Listener {
 				if(e.getItem().getItemStack().getItemMeta().getDisplayName().toLowerCase().contains("crash")){
 					e.setCancelled(true);
 					Player player = e.getPlayer();
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
 				}
 			}catch(java.lang.NullPointerException exc){ Holder.Console.sendMessage( exc.getMessage() ); }
 		}
@@ -99,9 +100,9 @@ public class AntiWurstInventoryListener implements Listener {
 				if(e.getPlayer().getItemInHand().getItemMeta().getDisplayName().toLowerCase().contains("crash")){
 					e.setCancelled(true);
 					Player player = e.getPlayer();
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
-					player.sendMessage(Holder.title + "§c" + Holder.NoCrashItemMessage);
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoCrashItemMessage.GetString());
 				}
 			}catch(java.lang.NullPointerException exc){ Holder.Console.sendMessage( exc.getMessage() ); }
 		}

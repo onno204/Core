@@ -14,6 +14,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
 import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 
 public class ScoreboardFunctions {
 		
@@ -36,7 +37,7 @@ public class ScoreboardFunctions {
 				if(p.getInventory().getHelmet().getType() == null){ NoTeam.addPlayer(Bukkit.getOfflinePlayer(p.getUniqueId())); continue; }
 				if(p.getInventory().getHelmet().getType().equals(Material.MOSSY_COBBLESTONE)){
 					Bivak.addPlayer(Bukkit.getOfflinePlayer(p.getUniqueId()));
-					p.sendMessage(Holder.title + Holder.AddBivak);
+					p.sendMessage(Messages.title.GetString() + Messages.AddBivak.GetString() );
 					p.setPlayerListName("Overvaller");
 					p.setCustomName("Overvaller");
 					p.setDisplayName("Overvaller");

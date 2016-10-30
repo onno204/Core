@@ -6,17 +6,17 @@ import org.bukkit.permissions.Permission;
 
 public class Permissions {
 	
-	public static Permission Notify = new Permission(Holder.RawName + ".Notify");
-	public static Permission GamemodeBypass = new Permission(Holder.RawName + ".Gamemode.Bypass");
-	public static Permission ShowPls = new Permission(Holder.RawName + ".NoPerms.ShowPLs");
-	public static Permission Menu = new Permission(Holder.RawName + ".Menu");
-	public static Permission AllowChat = new Permission(Holder.RawName + ".AllowChat");
-	public static Permission AllowTrapdoor = new Permission(Holder.RawName + ".AllowTrapdoor");
+	public static Permission Notify = new Permission(Messages.RawName.GetString() + ".Notify");
+	public static Permission GamemodeBypass = new Permission(Messages.RawName.GetString() + ".Gamemode.Bypass");
+	public static Permission ShowPls = new Permission(Messages.RawName.GetString() + ".NoPerms.ShowPLs");
+	public static Permission Menu = new Permission(Messages.RawName.GetString() + ".Menu");
+	public static Permission AllowChat = new Permission(Messages.RawName.GetString() + ".AllowChat");
+	public static Permission AllowTrapdoor = new Permission(Messages.RawName.GetString() + ".AllowTrapdoor");
 
-	public static Permission Build = new Permission(Holder.RawName + ".Build");
-	public static Permission Prefix = new Permission(Holder.RawName + ".Prefix");
-	public static Permission Bank = new Permission(Holder.RawName + ".Bank");
-	public static Permission pvp = new Permission(Holder.RawName + ".PvP");
+	public static Permission Build = new Permission(Messages.RawName.GetString() + ".Build");
+	public static Permission Prefix = new Permission(Messages.RawName.GetString() + ".Prefix");
+	public static Permission Bank = new Permission(Messages.RawName.GetString() + ".Bank");
+	public static Permission pvp = new Permission(Messages.RawName.GetString() + ".PvP");
 	
 
 	public static ArrayList<Permission> Perms = new ArrayList<Permission>();

@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 
 public class PrefixCommand implements CommandExecutor {
 	 
@@ -15,18 +16,18 @@ public class PrefixCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {  
 		if(args.length == 0){ ShowHelp(sender); return true;}
 		if(args[0].toLowerCase().equalsIgnoreCase("setprefix")){ 
-			if(args.length < 3){ sender.sendMessage(Holder.title + "§4§l" + Holder.NotEnoughArgs); return true; }
+			if(args.length < 3){ sender.sendMessage(Messages.title.GetString() + "§4§l" + Messages.NotEnoughArgs.GetString()); return true; }
 			Player player = Bukkit.getPlayer(args[1]);
 			Holder.Chat.setPlayerPrefix(player, "&8[&7" + args[2].replace("&", "") + "&8]&6");
-			sender.sendMessage(Holder.title + "Updated prefix!");
-			player.sendMessage(Holder.title + "Updated prefix!");
+			sender.sendMessage(Messages.title.GetString() + "Updated prefix!");
+			player.sendMessage(Messages.title.GetString() + "Updated prefix!");
 			return true;
 		}if(args[0].toLowerCase().equalsIgnoreCase("removeprefix")){ 
-			if(args.length < 2){ sender.sendMessage(Holder.title + "§4§l" + Holder.NotEnoughArgs); return true; }
+			if(args.length < 2){ sender.sendMessage(Messages.title.GetString() + "§4§l" + Messages.NotEnoughArgs.GetString()); return true; }
 			Player player = Bukkit.getPlayer(args[1]);
 			Holder.Chat.setPlayerPrefix(player, "");
-			sender.sendMessage(Holder.title + "Updated prefix!");
-			player.sendMessage(Holder.title + "Updated prefix!");
+			sender.sendMessage(Messages.title.GetString() + "Updated prefix!");
+			player.sendMessage(Messages.title.GetString() + "Updated prefix!");
 			return true;
 		}else { ShowHelp(sender); }
 		return true;

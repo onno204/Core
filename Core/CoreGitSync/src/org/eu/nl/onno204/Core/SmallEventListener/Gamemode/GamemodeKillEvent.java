@@ -3,7 +3,7 @@ package org.eu.nl.onno204.Core.SmallEventListener.Gamemode;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 import org.eu.nl.onno204.Core.Main.Methods;
 
 public class GamemodeKillEvent { 
@@ -15,8 +15,8 @@ public class GamemodeKillEvent {
 				Player killer = p.getKiller();
 				if(killer.getGameMode() == GameMode.CREATIVE){
 					Methods.RunConsoleCommand("gamemode survival " + killer.getName());
-					Methods.NotifyPlayerWithPerms(Holder.title + "§c§l" + Methods.ReplacePlayer( Holder.KillGamemodeMessage, killer));
-					Methods.NotifyPlayerWithPerms(Holder.title + "§c§l" + Methods.ReplacePlayer( Holder.KillGamemodeMessage, killer));
+					Methods.NotifyPlayerWithPerms(Messages.title.GetString() + "§c§l" + Methods.ReplacePlayer( Messages.KillGamemodeMessage.GetString(), killer));
+					Methods.NotifyPlayerWithPerms(Messages.title.GetString() + "§c§l" + Methods.ReplacePlayer( Messages.KillGamemodeMessage.GetString(), killer));
 				}
 			}
 		}

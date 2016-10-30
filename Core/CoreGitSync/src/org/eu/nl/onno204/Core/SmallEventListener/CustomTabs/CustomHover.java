@@ -6,14 +6,14 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.eu.nl.onno204.Core.Config.Config;
-import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 import org.eu.nl.onno204.Core.Main.Methods;
 
 public class CustomHover {
 	
     public static void onPing(ServerListPingEvent e) {
         List<String> sample = new ArrayList<String>();
-        sample.add(Holder.FancyName);
+        sample.add(Messages.FancyName.GetString());
         sample.add("-------------------------");
         sample.add("New game thing available");
         sample.add("Join for free stuff now!");
@@ -24,7 +24,7 @@ public class CustomHover {
         e.setMaxPlayers(Bukkit.getOnlinePlayers().size() + 3);
        // e.setProtocolName("§b§l" + Holder.RawName);
         String ip = e.getAddress().getHostAddress();
-        e.setMotd(Methods.ReplacePlayer(Holder.MOTD, GetPlayer(ip)));;
+        e.setMotd(Methods.ReplacePlayer(Messages.MOTD.GetString(), GetPlayer(ip)));;
     }
 
 	public static String GetPlayer(String Host){

@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.eu.nl.onno204.Core.Config.Config;
 import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 
 public class BankCommand implements CommandExecutor {
 	 
@@ -18,26 +19,26 @@ public class BankCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {  
 		if(args.length == 0){ ShowHelp(sender); return true;}
 		if(args[0].toLowerCase().equalsIgnoreCase("give")){ 
-			if(args.length < 3){ sender.sendMessage(Holder.title + "§4§l" + Holder.NotEnoughArgs); return true; }
+			if(args.length < 3){ sender.sendMessage(Messages.title.GetString() + "§4§l" + Messages.NotEnoughArgs.toString()); return true; }
 			Player player = Bukkit.getPlayer(args[1]);
 			int amount = Integer.valueOf(args[2]);
 			Holder.economy.withdrawPlayer(player, amount);
-			player.sendMessage(Holder.title + "Er is " + amount + " euro overgemaakt naar jou.");
-			sender.sendMessage(Holder.title + "Er is " + amount + " euro overgemaakt naar " + player.getName() + ".");
+			player.sendMessage(Messages.title.GetString() + "Er is " + amount + " euro overgemaakt naar jou.");
+			sender.sendMessage(Messages.title.GetString() + "Er is " + amount + " euro overgemaakt naar " + player.getName() + ".");
 			Date date = new Date();
 			Config.Bank.set(player.getName() + ".OpSchriften.D"+date.getDay()+".H"+date.getHours() + ".Min" +date.getMinutes()+ ".S" +date.getSeconds(), amount );
 			return true;
 		}else if(args[0].toLowerCase().equalsIgnoreCase("take")){ 
-			if(args.length < 3){ sender.sendMessage(Holder.title + "§4§l" + Holder.NotEnoughArgs); return true; }
+			if(args.length < 3){ sender.sendMessage(Messages.title.GetString() + "§4§l" + Messages.NotEnoughArgs.toString()); return true; }
 			Player player = Bukkit.getPlayer(args[1]);
 			int amount = Integer.valueOf(args[2]);
 			if(Holder.economy.getBalance(player) < amount){
-				sender.sendMessage(Holder.title + "Deze speler is sceer en heeft maar: " +  Holder.economy.getBalance(player));
+				sender.sendMessage(Messages.title.GetString() + "Deze speler is sceer en heeft maar: " +  Holder.economy.getBalance(player));
 				return true;
 			}
 			Holder.economy.withdrawPlayer(player, amount);
-			player.sendMessage(Holder.title + "Er is " + amount + " euro overgemaakt naar de bank.");
-			sender.sendMessage(Holder.title + "Er is " + amount + " euro overgemaakt naar de bank vanaf " + player.getName() + ".");
+			player.sendMessage(Messages.title.GetString() + "Er is " + amount + " euro overgemaakt naar de bank.");
+			sender.sendMessage(Messages.title.GetString() + "Er is " + amount + " euro overgemaakt naar de bank vanaf " + player.getName() + ".");
 			Date date = new Date();
 			Config.Bank.set(player.getName() + ".Afschiften.D"+date.getDay()+".H"+date.getHours() + ".Min" +date.getMinutes()+ ".S" +date.getSeconds(), amount );
 			
@@ -45,7 +46,7 @@ public class BankCommand implements CommandExecutor {
 			
 			return true;
 		}else if(args[0].toLowerCase().equalsIgnoreCase("ZijnWeSceer")){ 
-			sender.sendMessage(Holder.title + "Jullie hebben nog: " + Holder.economy.bankBalance("Bank").balance );
+			sender.sendMessage(Messages.title.GetString() + "Jullie hebben nog: " + Holder.economy.bankBalance("Bank").balance );
 			sender.sendMessage(Holder.economy.getBanks().toString());
 			return true;
 		}else { ShowHelp(sender); }

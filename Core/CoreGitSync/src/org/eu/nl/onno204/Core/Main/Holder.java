@@ -17,16 +17,23 @@ public class Holder {
 
 	public static ProtocolManager protocolManager;
 	public final Logger logger = Logger.getLogger("Minecraft");
+	/*
 	public static String title = "§8[§6Real§9Lands§8]§f";
 	public static String Skype = "Live:RealLandsServer";
 	public static String RawName = "RealLandsCore";
 	public static String FancyName = "§4§k..§r§b§lReal§6§lLands§4§k..§r";
-	public static Plugin pl = Bukkit.getPluginManager().getPlugin(RawName);
+	*/
+	public static Plugin pl = Bukkit.getPluginManager().getPlugin(Messages.RawName.toString());
+	
 	public static ConsoleCommandSender Console = Bukkit.getServer().getConsoleSender();
 	
 	//Vault
     public static Economy economy = null;
     public static net.milkbowl.vault.chat.Chat Chat = null;
+    
+	public static ArrayList<Player> CommandWacherPlayers = new ArrayList<Player>();
+	public static int BroadcastCounter = 0;
+	public static boolean PvPEnabled = Messages.PvPEnabled.GetBoolean();
 	
     
     
@@ -46,6 +53,9 @@ public class Holder {
      * ENGLISH
      * ENGLISH
      * 
+     */
+    
+    /*
 	//Gamemode Messages
 	public static String HasGamemodeMessage = "%player% Has gamemode! It's getting taken away now...";
 	public static String KillGamemodeMessage = "%player% Has gamemode and killed someone! It's getting taken away now...";
@@ -106,8 +116,13 @@ public class Holder {
 	//Bank
 	public static String ToTheBank = "§cJe hebt %message% op de bank gezet.";
 	public static String FromTheBank = "§aJe hebt %message% In je Inventory gekregen.";
-	
+
+  	//ServerList
+  	public static String MOTD = "§3Do you want to play with us §f%player%§3?";
 	*/
+    
+	
+    /*
   //Gamemode Messages
   	public static String HasGamemodeMessage = "%player% Heeft gamemode. Het word nu weg gehaalt";
   	public static String KillGamemodeMessage = "%player% Heeft gamemode en vermoorde iemand.";
@@ -173,26 +188,9 @@ public class Holder {
   	//ServerList
   	public static String MOTD = "§4§k..§r§b§lReal§6§lLands§4§k..§r §3Kom je mee spelen §f%player%§3?";
     
+    */
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-	
-	
-	
-	public static String BanEndMessage = "§5More questions? Ask staff in minecraft or on skype: §6" + Holder.Skype + "\n§5Please include a Screenshot's. Also include why you shouldn't be banned." + "\n§6We look almost every day on our skype: " + Holder.Skype;
+	//public static String BanEndMessage = "§5More questions? Ask staff in minecraft or on skype: §6" + Holder.Skype + "\n§5Please include a Screenshot's. Also include why you shouldn't be banned." + "\n§6We look almost every day on our skype: " + Holder.Skype;
 	
 	public static Color getColor(int i) {
 		Color c = null;

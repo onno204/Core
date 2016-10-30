@@ -9,6 +9,7 @@ import java.io.Writer;
 import java.util.HashMap;
 
 import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 
 public class TxTWriter {
 	
@@ -33,7 +34,7 @@ public class TxTWriter {
 	public static void CreateFiles(){
 		for (File file : Files.values()){
 			try { 
-				if (file.createNewFile()) { Holder.Console.sendMessage(Holder.title + "File '" + file.getName() + "' is created!");} 
+				if (file.createNewFile()) { Holder.Console.sendMessage(Messages.title.GetString() + "File '" + file.getName() + "' is created!");} 
 			} catch (IOException e) { e.printStackTrace();  }
 		}
 	}
@@ -41,58 +42,58 @@ public class TxTWriter {
 
 	
 	public static void StartWriters(){
-		Holder.Console.sendMessage(Holder.title + "Loading Loggers...");
+		Holder.Console.sendMessage(Messages.title.GetString() + "Loading Loggers...");
 		for (String s : Files.keySet()){
 			if(s.equalsIgnoreCase("LogInAndOutLogger")){
 				try { 
 					LogInAndOutLogger = new BufferedWriter(new FileWriter(Files.get(s), true) );
 				} catch (IOException e) { e.printStackTrace(); }
-				Holder.Console.sendMessage(Holder.title + "Loaded LogInAndOutLogger.");
+				Holder.Console.sendMessage(Messages.title.GetString() + "Loaded LogInAndOutLogger.");
 			}else if(s.equalsIgnoreCase("CommandLogger")){
 				try { 
 					CommandLogger = new BufferedWriter(new FileWriter(Files.get(s), true) );
 				} catch (IOException e) { e.printStackTrace(); }
-				Holder.Console.sendMessage(Holder.title + "Loaded CommandLogger.");
+				Holder.Console.sendMessage(Messages.title.GetString() + "Loaded CommandLogger.");
 			}
 		}
-		Holder.Console.sendMessage(Holder.title + "Loaded Loggers...");
+		Holder.Console.sendMessage(Messages.title.GetString() + "Loaded Loggers...");
 	}
 	
 	public static void SaveWriters(){
-		Holder.Console.sendMessage(Holder.title + "Saving Loggers...");
+		Holder.Console.sendMessage(Messages.title.GetString() + "Saving Loggers...");
 		for (String s : Files.keySet()){
 			if(s.equalsIgnoreCase("LogInAndOutLogger")){
 				try {
 					LogInAndOutLogger.close();
 				} catch (IOException e) { e.printStackTrace(); }
-				Holder.Console.sendMessage(Holder.title + "Saved LogInAndOutLogger.");
+				Holder.Console.sendMessage(Messages.title.GetString() + "Saved LogInAndOutLogger.");
 			}else if(s.equalsIgnoreCase("CommandLogger")){
 				try { 
 					CommandLogger.close();
 				} catch (IOException e) { e.printStackTrace(); }
-				Holder.Console.sendMessage(Holder.title + "Saved CommandLogger.");
+				Holder.Console.sendMessage(Messages.title.GetString() + "Saved CommandLogger.");
 			}
 		}
 		StartWriters();
-		Holder.Console.sendMessage(Holder.title + "Saved Loggers...");
+		Holder.Console.sendMessage(Messages.title.GetString() + "Saved Loggers...");
 	}
 	
 	public static void ExitSaveWriters(){
-		Holder.Console.sendMessage(Holder.title + "Saving Loggers...");
+		Holder.Console.sendMessage(Messages.title.GetString() + "Saving Loggers...");
 		for (String s : Files.keySet()){
 			if(s.equalsIgnoreCase("LogInAndOutLogger")){
 				try {
 					LogInAndOutLogger.close();
 				} catch (IOException e) { e.printStackTrace(); }
-				Holder.Console.sendMessage(Holder.title + "Saved LogInAndOutLogger.");
+				Holder.Console.sendMessage(Messages.title.GetString() + "Saved LogInAndOutLogger.");
 			}else if(s.equalsIgnoreCase("CommandLogger")){
 				try { 
 					CommandLogger.close();
 				} catch (IOException e) { e.printStackTrace(); }
-				Holder.Console.sendMessage(Holder.title + "Saved CommandLogger.");
+				Holder.Console.sendMessage(Messages.title.GetString() + "Saved CommandLogger.");
 			}
 		}
-		Holder.Console.sendMessage(Holder.title + "Saved Loggers...");
+		Holder.Console.sendMessage(Messages.title.GetString() + "Saved Loggers...");
 	}
 	
 	

@@ -3,6 +3,7 @@ package org.eu.nl.onno204.Core.SmallEventListener;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 
 public class NoUnamedBooks implements Listener { 
 	 
@@ -15,7 +16,7 @@ public class NoUnamedBooks implements Listener {
 				if(e.getItemDrop().getItemStack().getItemMeta().getDisplayName().toLowerCase().contains("book and quill")){
 					e.setCancelled(true);
 					Player player = e.getPlayer();
-					player.sendMessage(Holder.title + "§c" + Holder.NoUnamedBook);
+					player.sendMessage(Messages.title.GetString() + "§c" + Messages.NoUnamedBook.GetString());
 				}
 			}catch(java.lang.NullPointerException exc){ Holder.Console.sendMessage( exc.getMessage() ); }
 		}

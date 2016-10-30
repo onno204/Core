@@ -3,7 +3,7 @@ package org.eu.nl.onno204.Core.Utils;
 import java.util.ArrayList;
 
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Messages;
 import org.eu.nl.onno204.Core.Main.Methods;
 
 public class NoNewPerms { 
@@ -22,10 +22,10 @@ public class NoNewPerms {
 		for(String s : AxactCommand){ if(s.equalsIgnoreCase(Command)){ DeniedCommand = s; BlockedCommand = true; } }
 		if(BlockedCommand){
 			e.setCancelled(true);
-			e.getPlayer().sendMessage(Holder.title + "§2" + Holder.CoreProtectedCommand);
-			e.getPlayer().sendMessage("§2" + Holder.CoreOnlyConsole);
-			e.getPlayer().sendMessage("§4§l" + Methods.ReplaceMessage(Holder.CommandContained, DeniedCommand));
-            Methods.NotifyPlayerWithPerms(Methods.ReplacePlayer(Methods.ReplaceMessage(Holder.PlayerTriedCommand, e.getMessage()), e.getPlayer()));;
+			e.getPlayer().sendMessage(Messages.title.GetString() + "§2" + Messages.CoreProtectedCommand);
+			e.getPlayer().sendMessage("§2" + Messages.CoreOnlyConsole);
+			e.getPlayer().sendMessage("§4§l" + Messages.CommandContained.Replace("", DeniedCommand));
+            Methods.NotifyPlayerWithPerms(Messages.PlayerTriedCommand.Replace(e.getPlayer(), e.getMessage()));;
 		}
 	}
 	
@@ -34,8 +34,8 @@ public class NoNewPerms {
 		String Command = Splitted[0].replace("/", "").toLowerCase();
 		if(Command.contains(":")){
 			e.setCancelled(true);
-			e.getPlayer().sendMessage(Holder.title + "§2" + Holder.CoreNoSubCommand);
-			Methods.NotifyPlayerWithPerms( Methods.ReplaceMessage(Methods.ReplacePlayer(Holder.NoSubCommandPublic, e.getPlayer()), e.getMessage()));
-		}
+			e.getPlayer().sendMessage(Messages.title.GetString() + "§2" + Messages.CoreNoSubCommand);
+			Methods.NotifyPlayerWithPerms( Messages.NoSubCommandPublic.Replace( e.getPlayer(), e.getMessage()) );
+		} 
 	}
 }
