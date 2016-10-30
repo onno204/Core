@@ -49,7 +49,8 @@ public class main extends JavaPlugin {
         //PlayerToZombie.Start();
         //NameHide.Start();
     }
- 
+    
+    
 	
 	@SuppressWarnings("deprecation")
 	public void onEnable(){
@@ -144,8 +145,7 @@ public class main extends JavaPlugin {
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.LoginAndOut(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.PvPEvent(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.SignListener(), this);
-		pl.registerEvents(new org.eu.nl.onno204.Core.SmallEventListener.CustomTabs.CustomHover(), this);
-		
+		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.ServerListPingRedicter(), this);
 		
 		System.out.println("Loading Blocked Commands");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("manuaddp");

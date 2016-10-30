@@ -1,30 +1,43 @@
 package org.eu.nl.onno204.Core.SmallEventListener.CustomTabs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.eu.nl.onno204.Core.Config.Config;
+import org.eu.nl.onno204.Core.Main.Holder;
+import org.eu.nl.onno204.Core.Main.Methods;
 
-public class CustomHover implements Listener{
-
-	@EventHandler
-	public void onServerListPing(final ServerListPingEvent e){
-		e.setMotd("§4§k..§r§b§lReal§6§lLands§4§k..§r §3Kom je mee spelen §f"+ GetPlayer(e) + "§3?");
-		e.setMaxPlayers(Bukkit.getOnlinePlayers().size() + 3);
-		
-	}
+public class CustomHover {
 	
-	public static String GetPlayer(ServerListPingEvent e){
-		String ip = e.getAddress().getHostAddress();
+    public static void onPing(ServerListPingEvent e) {
+        List<String> sample = new ArrayList<String>();
+        sample.add(Holder.FancyName);
+        sample.add("-------------------------");
+        sample.add("New game thing available");
+        sample.add("Join for free stuff now!");
+        //GameProfile[] samplee = {new GameProfile(new UUID(13, 41), Holder.FancyName), new GameProfile(new UUID(13, 41), Holder.FancyName)};
+        
+        //e.getReply().setPlayerSample(samplee);
+        //e.setOnlinePlayers(Bukkit.getOnlinePlayers().size());
+        e.setMaxPlayers(Bukkit.getOnlinePlayers().size() + 3);
+       // e.setProtocolName("§b§l" + Holder.RawName);
+        String ip = e.getAddress().getHostAddress();
+        e.setMotd(Methods.ReplacePlayer(Holder.MOTD, GetPlayer(ip)));;
+    }
+
+	public static String GetPlayer(String Host){
+		String ip = Host;
 		String Player = Config.IpRegister.getString(ip);
 		
 		if(Player == null){
-			return "Nieuwe speler";
+			return "New Player";
 		}else{
 			return Player;
 		}
 	}
+	
 	public static void RegisterPlayerAtIP(org.bukkit.event.player.PlayerJoinEvent e) {
 		String ip = e.getPlayer().getAddress().getAddress().getHostAddress();
 		String player = e.getPlayer().getName();

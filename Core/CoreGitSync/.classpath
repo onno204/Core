@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="C:/Users/Gebruiker/Programming/minecraft/APIs/Vault.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Gebruiker/Programming/minecraft/APIs/MinetopiaUpgradePL.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Gebruiker/Programming/minecraft/APIs/PlayerVaults.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gebruiker/Programming/minecraft/APIs/PingAPI.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

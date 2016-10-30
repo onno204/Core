@@ -20,6 +20,7 @@ public class Holder {
 	public static String title = "§8[§6Real§9Lands§8]§f";
 	public static String Skype = "Live:RealLandsServer";
 	public static String RawName = "RealLandsCore";
+	public static String FancyName = "§4§k..§r§b§lReal§6§lLands§4§k..§r";
 	public static Plugin pl = Bukkit.getPluginManager().getPlugin(RawName);
 	public static ConsoleCommandSender Console = Bukkit.getServer().getConsoleSender();
 	
@@ -168,7 +169,9 @@ public class Holder {
   	//Bank
   	public static String ToTheBank = "§cJe hebt %message% op de bank gezet.";
   	public static String FromTheBank = "§aJe hebt %message% In je Inventory gekregen.";
-    
+
+  	//ServerList
+  	public static String MOTD = "§4§k..§r§b§lReal§6§lLands§4§k..§r §3Kom je mee spelen §f%player%§3?";
     
     
     
