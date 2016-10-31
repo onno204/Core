@@ -2,6 +2,9 @@ package org.eu.nl.onno204.Core.Main;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.logging.Logger;
 
@@ -15,7 +18,6 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.eu.nl.onno204.Core.Config.Config;
 import org.eu.nl.onno204.Core.SmallEventListener.ScoreboardFunctions;
 //import org.eu.nl.onno204.Core.Utils.PvPWhitelist;
 import org.eu.nl.onno204.Core.Utils.PvPWhitelist;
@@ -33,18 +35,86 @@ public class main extends JavaPlugin {
 	Timer SafeConfigs;
 	Timer UtilsTimer;
 	Timer FastUtilsTimer;
+	public static YamlConfiguration MessagesCnf;
+	public static File Messages_FILE;
+	
+	public static ArrayList<String> BC = new ArrayList<String>();
+	
+	public YamlConfiguration getLang() { return MessagesCnf; }
+	public File getLangFile() { return Messages_FILE; }
+	
+	public void loadMessages() {
+	    File MessagesFile = new File(getDataFolder(), "Messages.yml");
+	    if (!MessagesFile.exists()) {
+	    	/*
+	        try {
+	            getDataFolder().mkdir();
+	            MessagesFile.createNewFile();
+	            InputStream defConfigStream = this.getResource("Messages.yml");
+	            if (defConfigStream != null) {
+	                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+	                defConfig.save(MessagesFile);
+	                Messages.setCnfFile(defConfig);
+	                //return defConfig;
+	                return;
+	            }
+	        } catch(IOException e) {
+	            e.printStackTrace(); // So they notice
+	            Holder.Console.sendMessage("§6[Core] Couldn't create Messagesuage file.");
+	            Holder.Console.sendMessage("§6[Core] This is a fatal error. Now disabling");
+	            this.setEnabled(false); // Without it loaded, we can't send them messages
+	        }
+	        */
+	    	System.out.println(getClass());
+            InputStream link = (getResource(MessagesFile.getName()));
+            try { Files.copy(link, MessagesFile.getAbsoluteFile().toPath());
+            }catch(IOException e) {
+	            e.printStackTrace(); // So they notice
+	            Holder.Console.sendMessage("§6[Core] Couldn't create Messagesuage file.");
+	            Holder.Console.sendMessage("§6[Core] This is a fatal error. Now disabling");
+	            this.setEnabled(false); // Without it loaded, we can't send them messages
+	        }
+	    }
+	    YamlConfiguration conf = YamlConfiguration.loadConfiguration(MessagesFile);
+	    /*
+	    for(Messages item : Messages.values() ) {
+	        if (conf.getString(item.GetPath()) == null) {
+	        	if(item.GetType().equalsIgnoreCase("Boolean")){
+		            conf.set(item.GetPath(), item.GetDefaultB());
+	        	}else if(item.GetType().equalsIgnoreCase("List")){
+		            conf.set(item.GetPath(), item.GetDefaultL());
+	        	}else{
+		            conf.set(item.GetPath(), '"' + item.GetDefaultS().replaceAll("'", "") + '"');
+	        	}
+	        }
+	    }
+	    */
+	    Messages.setCnfFile(conf);
+	    Messages.setFile(MessagesFile);
+	    main.MessagesCnf = conf;
+	    main.Messages_FILE = MessagesFile;
+	    /*
+	    try {
+	        conf.save(MessagesFile);
+	    } catch(IOException e) {
+	    	Holder.Console.sendMessage("§6Core: Failed to save Messages.yml.");
+	    	Holder.Console.sendMessage("§6Core: Report this stack trace to <your name>.");
+	        e.printStackTrace();
+	    }
+	    */
+	}
     
     static boolean setupEconomy() {
     	 RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
          if (rsp == null) { return false; }
-         economy = rsp.getProvider();
-         return economy != null;
+         Holder.economy = rsp.getProvider();
+         return Holder.economy != null;
     }
     
     static boolean setupChat() {
         RegisteredServiceProvider<Chat> rsp = Bukkit.getServer().getServicesManager().getRegistration(Chat.class);
-        Chat = rsp.getProvider();
-        return Chat != null;
+        Holder.Chat = rsp.getProvider();
+        return Holder.Chat != null;
     }
 	
     public void onLoad() {
@@ -53,14 +123,17 @@ public class main extends JavaPlugin {
         //NameHide.Start();
     }
     
-
-    public static net.milkbowl.vault.chat.Chat Chat = null;
-    public static Economy economy = null;
+    public void LoadBC(){
+		BC.add("&2Voor alle informatie die je nodig hebt type: '/Support'");
+		BC.add("&6Vragen over een plugin? onno204 staat altijd voor je klaar.");
+		BC.add("&9Alle vragen die je hebt worden beantword op de skype: '&lLive:RealLandsServer&9'.");
+    }
+    
 	
 	@SuppressWarnings("deprecation")
 	public void onEnable(){
 		
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		
 		
 		this.logger.info(pdfFile.getName() + " Version " + pdfFile.getVersion() + " Is getting enabled!" + ", Created By onno204!");
@@ -79,25 +152,23 @@ public class main extends JavaPlugin {
 		this.logger.info("=======================================================================================================");
 		this.logger.info("=======================================================================================================");
 		Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.AQUA + pdfFile.getName() + ChatColor.YELLOW + " Version " + pdfFile.getVersion() + ChatColor.AQUA + " Is getting enabled...");
+		LoadBC();
+		if(Disabled){ Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		
-		if(Disabled){ Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
-		System.out.println("Currently restarting or reloading!");
-		Methods.Broadcast("Bijna klaar met reloaden!");
-		
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("Loading Config Files...");
 		if(!this.getDataFolder().exists()){ this.getDataFolder().mkdir(); System.out.println("Datafolder Created."); 
 		}else{ System.out.println("Datafolder Already existed."); }
 		
 		//Load Default config
-		File file = new File(this.getDataFolder().getPath(), "config.yml");
-		try { if (file.createNewFile()) { System.out.println("File '" + file.getName() + "' is created!");} 
-		} catch (IOException ee) { System.out.println("Something went wrong while creating player files");  }
-		Config.DefaultConfig = YamlConfiguration.loadConfiguration( file );
-
-		System.out.println(Config.DefaultConfig.getString("NotEnoughArgs"));
+		loadMessages();
+		
+		//Set's the Pl in the holder
+		Holder.pl = this;
+		
 		System.out.println(Messages.NotEnoughArgs.GetString());
 		
+		//Vualt Hooking
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
         	Methods.NotifyPlayerWithPerms("No vault Plugin was found!");
         	Bukkit.getPluginManager().disablePlugin(this);
@@ -114,7 +185,7 @@ public class main extends JavaPlugin {
         	Bukkit.getPluginManager().disablePlugin(this);
         }
 		
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		
 		
 		org.eu.nl.onno204.Core.Config.TxTWriter.Load();
@@ -123,7 +194,7 @@ public class main extends JavaPlugin {
 		Methods.LoadCommandWacther();
 		
 		
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("Setting up Inventories...");
 		org.eu.nl.onno204.Core.Inventorys.SetupItemstacks.Setup();
 		org.eu.nl.onno204.Core.Inventorys.Inventorys.Setup();
@@ -133,7 +204,7 @@ public class main extends JavaPlugin {
 		PluginManager pl = Bukkit.getPluginManager();
 		for(Permission perm : Permissions.AllPerms()){ pl.addPermission(perm); }
 
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("Controlling Commands..."); 
 		getCommand("RealLandsCore").setExecutor(new org.eu.nl.onno204.Core.Commands.Commands() );
 		getCommand("RealLandsCore").setPermission(Permissions.Menu.toString());
@@ -154,7 +225,7 @@ public class main extends JavaPlugin {
 		getCommand("Rugzak").setExecutor(new org.eu.nl.onno204.Core.Commands.RugzakCommand() );
 		
 
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("Registering events..."); 
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.AntiWurstInventoryListener(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.BlockListener(), this);
@@ -168,8 +239,11 @@ public class main extends JavaPlugin {
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.PvPEvent(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.SignListener(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.ServerListPingRedicter(), this);
+		
+		
+		
 
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("Loading Blocked Commands");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("manuaddp");
 		org.eu.nl.onno204.Core.Utils.NoNewPerms.BlockedCommands.add("manudel");
@@ -212,22 +286,22 @@ public class main extends JavaPlugin {
 		PvPWhitelist.AllowedWeapons.add(Material.BOW);
 		PvPWhitelist.AllowedWeapons.add(Material.STICK);
 
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("Loading Broadcast messages...");
 		//org.eu.nl.onno204.Core.Main.Holder.BroadcastMessages.add("&2Voor alle informatie die je nodig hebt type: '/Support'");
 		//org.eu.nl.onno204.Core.Main.Holder.BroadcastMessages.add("&6Vragen over een plugin? onno204 staat altijd voor je klaar.");
 		//org.eu.nl.onno204.Core.Main.Holder.BroadcastMessages.add("&9Alle vragen die je hebt worden beantword op de skype: '&lLive:RealLandsServer&9'.");
 
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("Creating ScoreBoards...");
 		ScoreboardFunctions.SetupBivak();
 		ScoreboardFunctions.Setup(null, false);
 
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("SettingUp Bank...");
 		Holder.economy.createBank("Bank", Bukkit.getOfflinePlayer("AstrumDeus"));
 
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("Creating Timers...");
 		UtilsTimer = new Timer();
 		FastUtilsTimer = new Timer();
@@ -303,7 +377,9 @@ public class main extends JavaPlugin {
 		} catch (IOException ee) { System.out.println("Something went wrong while saving player files");  }
 		
 		*/
-		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");return; }
+		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
+		System.out.println("Currently restarting or reloading!");
+		Methods.Broadcast("Bijna klaar met reloaden!");
 		Holder.Console.sendMessage(ChatColor.AQUA + pdfFile.getName() + ChatColor.YELLOW + " Version " + pdfFile.getVersion() + ChatColor.AQUA + " Has Been Enabled!" + " Created By onno204!");
 		this.logger.info(pdfFile.getName() + " Version " + pdfFile.getVersion() + " Has Been Enabled!" + ", Created By onno204!");
 	}

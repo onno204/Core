@@ -23,7 +23,7 @@ public class Holder {
 	public static String RawName = "RealLandsCore";
 	public static String FancyName = "§4§k..§r§b§lReal§6§lLands§4§k..§r";
 	*/
-	public static Plugin pl = Bukkit.getPluginManager().getPlugin(Messages.RawName.toString());
+	public static Plugin pl = null;
 	
 	public static ConsoleCommandSender Console = Bukkit.getServer().getConsoleSender();
 	

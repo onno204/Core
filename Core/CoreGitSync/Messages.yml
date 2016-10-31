@@ -1,0 +1,97 @@
+################################################################
+########################    Core        ########################
+########################    Config      ########################
+########################    File!       ########################
+################################################################
+
+
+
+
+
+
+
+
+########################################
+########  Default After Reload  ########
+########################################
+Messages_PvPEnabled: true
+
+
+############################
+########  Messages  ########
+############################
+
+
+#### Information ####
+
+Messages_MainCommand: "RealLandsCore"
+Messages_RawName: "RealLandsCore"
+Messages_Skype: "Live:RealLandsServer"
+Messages_title: "&8[&6Real&9Lands&8]&f"
+Messages_FancyName: "&4&k..&r&b&lReal&6&lLands&4&k..&r"
+Messages_CommandWacherPrefix: "&7[&8RLWatcher&7]&f"
+Messages_Serverlist_MOTD: "&3Do you want to play with us &f%player%&3?"
+
+Messages_BroadcastMessages:
+- "&2Voor alle informatie die je nodig hebt type: /Support"
+- "&6Vragen over een plugin? onno204 staat altijd voor je klaar."
+- "&9Alle vragen die je hebt worden beantword op de skype: &lLive:RealLandsServer&9."
+
+
+#### Formatting ####
+Messages_TempBanFirstLine: "You have been %bantype% by %player%!"
+Messages_BanAndKickFormattingMessage: "Formatting the message to our custom kick/ban command!"
+Messages_BroadcastFormattingMessage: "Formatting the message to our custom broadcast command!"
+
+#### Ban Messages
+Messages_BanAndKickFirstLine: "You have been %bantype% by %player%!"
+Messages_BanEndMessage: "\n&5More questions? Ask staff in minecraft or on skype: &6Live:RealLandsServer \n&5Please include a Screenshots.  Also include why you shouldnt be banned. \n&6 We look almost every day on our skype: Live:RealLandsServer"
+
+
+#### Core (for most server's not required)
+Messages_AddBivak: "Your now wearing a hat!"
+Messages_AllowDontClickTheTrapdoor: "Since u have perms for these trapdoors u can change them."
+Messages_DontClickTheTrapdoor: "Your not allowed to click this awesom trapdoor!"
+Messages_ToTheBank: "&cYou have %message% Stored on the bank."
+Messages_FromTheBank: "&ayou have received %message% From the bank."
+Messages_RemoveBivak: "Your now stopping wearing a hat!"
+
+#### CoreCommand
+Messages_DisabledCommandWatcher: "Command watcher disabled."
+Messages_EnabledCommandWatcher: "Command watcher enabled."
+Messages_FakePeopleSpawn: "%player% Spawned fake people at %message%"
+Messages_FireworkMessage: "Enjoy some firework :D"
+Messages_WarnKickMessage: "You have been warned 3 times!"
+Messages_PvPDisabled: "&cPvp is disabled!"
+Messages_PlayerCrashedPlayer: "%player% crashed %message%"
+Messages_NoValidPlayer: "%message% is not a valid player!"
+Messages_NotEnoughArgs: "Not all args included."
+#Disabled: Messages_ManuaddCommand
+Messages_ManuaddCommand: "The player %player% was moved to the kingdom %message%"
+
+#### Join And Leave
+Messages_CustomJoinMessage: "&2%player% &ajoined &6Real&9Lands&a!"
+Messages_CustomLeaveMessage: "&4%player% &chas left &6Real&9Lands&a!"
+
+#### Event
+Messages_CommandContained: "The command contained: %message%"
+Messages_CoreNoSubCommand: "Im sorry, but Sub commands containing : are not allowed!"
+Messages_CoreOnlyConsole: "Only the console can execute this Command."
+Messages_CoreProtectedCommand: "Im sorry, but this command is blocked by the core."
+Messages_PlayerTriedCommand: "%player% tried the command: %message%!"
+Messages_PvPWhitelistDeny: "&3You have to use a weapon!"
+Messages_NoUnamedBook: "&cYou cant trow unnamed books!"
+Messages_NoSubCommandPublic: "%player% tried a subcommand of a plugin: %message%!"
+Messages_NoCrafting: "&cYour not allowed to craft!!"
+Messages_NoCrashItemMessage: "Your not allowed to have crash items!"
+Messages_AntiBuild: "Your not allowed to build!"
+
+#### Anti Gamemode
+Messages_KillGamemodeMessage: "%player% Has gamemode and killed someone! Its getting taken away now..."
+Messages_GamemodeCheaterMessage: "&c&lEnjoy your gamemode cheater!"
+Messages_HasGamemodeMessage: "%player% Has gamemode! Its getting taken away now..."
+Messages_GamemodeDenyMessage: "Gamemode is only for the console!"
+
+#### Commands
+Messages_NoBackPack: "&9No backpack found!"
+
