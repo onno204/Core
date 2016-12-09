@@ -5,6 +5,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.eu.nl.onno204.Core.Inventorys.BlockListener;
+import org.eu.nl.onno204.Core.SmallEventListener.Drugs;
 import org.eu.nl.onno204.Core.SmallEventListener.NoTrapdoorChange;
 
 public class InteractEvent implements Listener{
@@ -14,6 +15,7 @@ public class InteractEvent implements Listener{
 		NoTrapdoorChange.NoTrapdoorFuck(e);
 		BlockListener.BankListener(e);
 		BlockListener.RandomSignListener(e);
+		Drugs.DrugsUse(e);
 	}
 	
 }

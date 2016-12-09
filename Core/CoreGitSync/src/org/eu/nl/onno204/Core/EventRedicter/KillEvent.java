@@ -9,6 +9,6 @@ public class KillEvent implements Listener{
 	
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void GamemodeKiilEvent(PlayerDeathEvent  e) {
-		GamemodeKiilEvent(e);
+		//GamemodeKiilEvent(e);
 	}
 }

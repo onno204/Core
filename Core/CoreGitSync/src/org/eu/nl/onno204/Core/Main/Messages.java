@@ -123,7 +123,7 @@ public enum Messages {
 	
 	public String Format(){ 
 		String CnfS = null;
-		if(MessagesCnf.getString(this.Path) == null){ CnfS = GetDefaultS(); System.out.println("Using default Settings");
+		if(MessagesCnf.getString(this.Path) == null){ CnfS = GetDefaultS(); System.out.println("[Core]Using default Settings");
 		}else{ CnfS = MessagesCnf.getString(this.Path); }
 		return ChatColor.translateAlternateColorCodes('&', CnfS); 
 	}

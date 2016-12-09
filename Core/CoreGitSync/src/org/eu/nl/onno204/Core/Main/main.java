@@ -207,20 +207,24 @@ public class main extends JavaPlugin {
 		if(Disabled){ Holder.Console.sendMessage(ChatColor.RED + "" +ChatColor.BOLD + "FAILED TO LOAD");this.setEnabled(false); }
 		System.out.println("Controlling Commands..."); 
 		getCommand("RealLandsCore").setExecutor(new org.eu.nl.onno204.Core.Commands.Commands() );
-		getCommand("RealLandsCore").setPermission(Permissions.Menu.toString());
+		getCommand("RealLandsCore").setPermission(Permissions.Menu.getName());
 		getCommand("RealLandsCore").setPermissionMessage(ChatColor.RED + "To bad. Not enough perms!");
 		
 		getCommand("Prefix").setExecutor(new org.eu.nl.onno204.Core.Commands.PrefixCommand() );
-		getCommand("Prefix").setPermission(Permissions.Prefix.toString());
+		getCommand("Prefix").setPermission(Permissions.Prefix.getName());
 		getCommand("Prefix").setPermissionMessage(ChatColor.RED + "To bad. Not enough perms!");
 		
 		getCommand("Bank").setExecutor(new org.eu.nl.onno204.Core.Commands.BankCommand() );
-		getCommand("Bank").setPermission(Permissions.Bank.toString());
+		getCommand("Bank").setPermission(Permissions.Bank.getName());
 		getCommand("Bank").setPermissionMessage(ChatColor.RED + "/Bank is alleen voor de bank! §6Om een pinautomaat te openen moet je er een zoeken.");
-		
+
 		getCommand("pvp").setExecutor(new org.eu.nl.onno204.Core.Commands.PvPCommand() );
-		getCommand("pvp").setPermission(Permissions.pvp.toString());
-		getCommand("pvp").setPermissionMessage(ChatColor.RED + "123123.");
+		getCommand("pvp").setPermission(Permissions.pvp.getName());
+		getCommand("pvp").setPermissionMessage(ChatColor.RED + "Pvp is niet voor jou bestemt lieveschat.");
+		
+		getCommand("tnt").setExecutor(new org.eu.nl.onno204.Core.Commands.PvPCommand() );
+		getCommand("tnt").setPermission(Permissions.Tnt.getName());
+		getCommand("tnt").setPermissionMessage(ChatColor.RED + "Tnt is niet voor jou bestemt lieveschat.");
 		
 		getCommand("Rugzak").setExecutor(new org.eu.nl.onno204.Core.Commands.RugzakCommand() );
 		

@@ -17,6 +17,7 @@ public class Permissions {
 	public static Permission Prefix = new Permission(Messages.RawName.GetString() + ".Prefix");
 	public static Permission Bank = new Permission(Messages.RawName.GetString() + ".Bank");
 	public static Permission pvp = new Permission(Messages.RawName.GetString() + ".PvP");
+	public static Permission Tnt = new Permission(Messages.RawName.GetString() + ".TnT");
 	
 
 	public static ArrayList<Permission> Perms = new ArrayList<Permission>();
