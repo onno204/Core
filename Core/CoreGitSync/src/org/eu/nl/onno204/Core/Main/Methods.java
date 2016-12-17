@@ -29,7 +29,6 @@ public class Methods {
     	Config.CommandWatcher.set("Player", Strings);
 	}
 	
-	@SuppressWarnings("deprecation")
 	public static void LoadCommandWacther(){
 		for(String s : Config.CommandWatcher.getStringList("Player")){
 			Holder.CommandWacherPlayers.add(Bukkit.getPlayer(s));

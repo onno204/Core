@@ -12,7 +12,6 @@ import org.eu.nl.onno204.Core.Main.Methods;
 public class Commands implements CommandExecutor {
 	 
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {  
 		if(args.length == 0){ ShowHelp(sender); return true;}

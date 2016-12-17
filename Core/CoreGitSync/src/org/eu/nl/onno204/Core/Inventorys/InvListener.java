@@ -9,7 +9,6 @@ import org.eu.nl.onno204.Core.Main.Messages;
 
 public class InvListener {
 
-	@SuppressWarnings("deprecation")
 	public static void BankClickEvent(org.bukkit.event.inventory.InventoryClickEvent e) {
 		  if(e.getInventory().getName() == Inventorys.Bank.getName()){
 			  e.setCancelled(true);
@@ -181,7 +180,6 @@ public class InvListener {
     }
 	
 	
-    @SuppressWarnings("deprecation")
 	public static boolean removeItems(Player p, Material type, int amount) {
         if (amount <= 0) return false;
         int size = p.getInventory().getSize();

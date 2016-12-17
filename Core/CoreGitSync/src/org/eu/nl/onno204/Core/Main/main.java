@@ -222,7 +222,7 @@ public class main extends JavaPlugin {
 		getCommand("pvp").setPermission(Permissions.pvp.getName());
 		getCommand("pvp").setPermissionMessage(ChatColor.RED + "Pvp is niet voor jou bestemt lieveschat.");
 		
-		getCommand("tnt").setExecutor(new org.eu.nl.onno204.Core.Commands.PvPCommand() );
+		getCommand("tnt").setExecutor(new org.eu.nl.onno204.Core.Commands.TntCommand() );
 		getCommand("tnt").setPermission(Permissions.Tnt.getName());
 		getCommand("tnt").setPermissionMessage(ChatColor.RED + "Tnt is niet voor jou bestemt lieveschat.");
 		
@@ -243,6 +243,7 @@ public class main extends JavaPlugin {
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.PvPEvent(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.SignListener(), this);
 		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.ServerListPingRedicter(), this);
+		pl.registerEvents(new org.eu.nl.onno204.Core.EventRedicter.ChestOpenEvent(), this);
 		
 		
 		

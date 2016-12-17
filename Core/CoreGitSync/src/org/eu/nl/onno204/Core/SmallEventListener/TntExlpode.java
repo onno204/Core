@@ -1,6 +1,8 @@
 package org.eu.nl.onno204.Core.SmallEventListener;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,7 +16,7 @@ import me.onno204.MinetopiaUpgrade.main.main;
 
 public class TntExlpode {
 
-	static HashMap<Player, Integer> ItemStealTimer = new HashMap<Player, Integer>();
+	static HashMap<UUID, Integer> ItemStealTimer = new HashMap<UUID, Integer>();
 	public static void TntExplosings(org.bukkit.event.block.BlockPlaceEvent e) { 
 		ItemStack item = e.getPlayer().getItemInHand() ;
 		Player p = e.getPlayer();
@@ -22,34 +24,44 @@ public class TntExlpode {
 		if(item.getType() == null){ return; }
 		Location Clicked = e.getBlock().getLocation();
 		if(item.getType() != Material.TNT) { return; }
-		if(!Holder.TntEnabled){ e.getPlayer().sendMessage(Messages.title.toString() + "Tnt staat momenteel uit"); }
-		if(ItemStealTimer.keySet().contains(p)){
-			if(ItemStealTimer.keySet().contains(p)){
+		if(!Holder.TntEnabled){ e.getPlayer().sendMessage(Messages.title.toString() + "Tnt staat momenteel uit"); return; }
+		
+		if(!item.hasItemMeta()){ NoLore(p); e.setCancelled(true); return; }
+		if(!item.getItemMeta().hasLore()){ NoLore(p); e.setCancelled(true); return; }
+		List<String> Lore = item.getItemMeta().getLore();
+		if(!Lore.get(0).startsWith("§8Tnt Nr:")){ NoLore(p); e.setCancelled(true); return; }
+		
+		if(ItemStealTimer.keySet().contains(p.getUniqueId())){
+			if(ItemStealTimer.keySet().contains(p.getUniqueId())){
 				int Current = ((int)System.currentTimeMillis());
-				int Last = ItemStealTimer.get(p);
+				int Last = ItemStealTimer.get(p.getUniqueId());
 				if(Last >= Current-920000 ){
 					e.setCancelled(true);
 					p.sendMessage(main.title + "Je kan maar 1 tnttje plaatsen in de zoveel tijd!");
 					return;
 				}
 			}
-			ItemStealTimer.remove(p);
-			ItemStealTimer.put(p, ((int)System.currentTimeMillis()) );
+			ItemStealTimer.remove(p.getUniqueId());
+			ItemStealTimer.put(p.getUniqueId(), ((int)System.currentTimeMillis()) );
 		}else{
-			ItemStealTimer.put(p, ((int)System.currentTimeMillis()) );
+			ItemStealTimer.put(p.getUniqueId(), ((int)System.currentTimeMillis()) );
 		}
 		if(!removeItems(e.getPlayer(), Material.TNT, 1)){ return; }
 		e.setCancelled(true);
 		Methods.RunConsoleCommand("Summon PrimedTnt " + Clicked.getX() + " " + Clicked.getY() + " " + Clicked.getZ());
 	}
 	
-    @SuppressWarnings("deprecation")
+	public static void NoLore(Player p){
+		p.sendMessage(Messages.title + "Je TNT is niet geldig!");
+	}
+	
 	public static boolean removeItems(Player p, Material type, int amount) {
         if (amount <= 0) return false;
         int size = p.getInventory().getSize();
         for (int slot = 0; slot < size; slot++) {
             ItemStack is = p.getInventory().getItem(slot);
             if (is == null) continue;
+            if(!(is.hasItemMeta() && is.getItemMeta().hasLore())){ continue; }
             if (type == is.getType()) {
                 int newAmount = is.getAmount() - amount;
                 if (newAmount >= 0) {

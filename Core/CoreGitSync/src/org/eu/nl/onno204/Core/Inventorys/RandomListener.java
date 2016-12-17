@@ -8,7 +8,6 @@ import org.eu.nl.onno204.Core.Main.Messages;
 
 public class RandomListener{
 
-	@SuppressWarnings("deprecation")
 	public static void RandomclickEvent(org.bukkit.event.inventory.InventoryClickEvent e) {
 		  if(e.getInventory().getName() == Inventorys.Random.getName()){
 			  e.setCancelled(true);

@@ -33,8 +33,8 @@ public class Holder {
     
 	public static ArrayList<Player> CommandWacherPlayers = new ArrayList<Player>();
 	public static int BroadcastCounter = 0;
-	public static boolean PvPEnabled = Messages.PvPEnabled.GetBoolean();
-	public static boolean TntEnabled = Messages.PvPEnabled.GetBoolean();
+	public static boolean PvPEnabled = false;
+	public static boolean TntEnabled = false;
 	
     
     

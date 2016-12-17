@@ -25,15 +25,15 @@ public class Drugs {
 			if(!TimerCheck(p)){ return; }
 			if(!removeItems(e.getPlayer(), Material.SUGAR, 1)){ return; }
 			e.setCancelled(true);
-			PotionEffect potion = PotionEffectType.INCREASE_DAMAGE.createEffect(GetPotionTime(30), 1);
-			p.addPotionEffect(potion, true);
+			PotionEffect potion = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 30, 1);
+			p.addPotionEffect(potion);
 			p.sendMessage(Messages.FancyName.toString() + "Je hebt drugs gebruikt!");
 			
 		}else if(item.getType() == Material.SNOW_BLOCK) {
 			if(!TimerCheck(p)){ return; } 
 			if(!removeItems(e.getPlayer(), Material.SNOW_BLOCK, 1)){ return; }
 			e.setCancelled(true);
-			PotionEffect potion = PotionEffectType.INCREASE_DAMAGE.createEffect(GetPotionTime(90), 2);
+			PotionEffect potion = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 90, 2);
 			p.addPotionEffect(potion);
 			p.sendMessage(Messages.FancyName.toString() + "Je hebt drugs gebruikt!");
 			
@@ -41,7 +41,7 @@ public class Drugs {
 			if(!TimerCheck(p)){ return; }
 			if(!removeItems(e.getPlayer(), Material.SEEDS, 1)){ return; }
 			e.setCancelled(true);
-			PotionEffect potion = PotionEffectType.SPEED.createEffect(GetPotionTime(60), 1);
+			PotionEffect potion = new PotionEffect(PotionEffectType.SPEED, 60, 1);
 			p.addPotionEffect(potion);
 			p.sendMessage(Messages.FancyName.toString() + "Je hebt drugs gebruikt!");
 			
@@ -49,17 +49,13 @@ public class Drugs {
 			if(!TimerCheck(p)){ return; }
 			if(!removeItems(e.getPlayer(), Material.COCOA, 1)){ return; }
 			e.setCancelled(true);
-			PotionEffect potion = PotionEffectType.INCREASE_DAMAGE.createEffect(GetPotionTime(90), 2);
+			PotionEffect potion = new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 90, 2);
 			p.addPotionEffect(potion);
-			PotionEffect potion2 = PotionEffectType.SLOW.createEffect(GetPotionTime(60), 1);
+			PotionEffect potion2 = new PotionEffect(PotionEffectType.SLOW, 1, 60);
 			p.addPotionEffect(potion2);
 			p.sendMessage(Messages.FancyName.toString() + "Je hebt drugs gebruikt!");
 			
 		}
-	}
-	
-	public static int GetPotionTime(int sec){
-		return sec * 2 * 100;
 	}
 	
 	public static Boolean TimerCheck(Player p){
@@ -67,7 +63,7 @@ public class Drugs {
 			if(ItemStealTimer.keySet().contains(p)){
 				int Current = ((int)System.currentTimeMillis());
 				int Last = ItemStealTimer.get(p);
-				if(Last >= Current-700 ){
+				if(Last >= Current-600 ){
 					p.sendMessage(main.title + "Om drugs spam te voorkomen kan je niet zo snel klikken!");
 					return false;
 				}
@@ -82,7 +78,6 @@ public class Drugs {
 	}
 	
 	
-    @SuppressWarnings("deprecation")
 	public static boolean removeItems(Player p, Material type, int amount) {
         if (amount <= 0) return false;
         int size = p.getInventory().getSize();

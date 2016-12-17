@@ -11,7 +11,6 @@ import org.eu.nl.onno204.Core.Main.Messages;
 
 public class PrefixCommand implements CommandExecutor {
 	 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {  
 		if(args.length == 0){ ShowHelp(sender); return true;}
